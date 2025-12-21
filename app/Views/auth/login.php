@@ -11,15 +11,14 @@
 </head>
 <body>
       <div class="grid grid-cols-12 min-h-screen">
-        <div class="col-span-12 md:col-span-6 px-12 py-8 md:py-12">
+        <div class="col-span-12 md:col-span-6 pl-12 pr-12 md:pr-40 py-8 md:py-12">
             <div class="flex flex-row items-stretch mb-6">
                 <img src="<?= base_url('assets/img/logo.svg') ?>" alt="" class="me-2">
-                <h3 class="self-center font-black" style="color: var(--primary-color)">INVW</h3>
+                <h2 class="self-center font-bold" style="color: var(--primary-600)">UangKemana</h2>
             </div>
             <div class="greet mb-6">
-                <h1 class="font-bold">Halo,</h1>
-                <h1 class="font-bold mb-3">Selamat Datang di <span style="color: var(--primary-color)">INVW</span></h1>
-                <p class="text-sm font-semibold" style="color: var(--secondary-text);">Silakan isi data anda dibawah ini.</p>
+                <h1 class="font-bold mb-3">Login</h1>
+                <p class="text-sm font-semibold" style="color: var(--secondary-text);">Masukkan data anda untuk akses akun.</p>
             </div>
             <?php if (session()->getFlashdata('error')) : ?>
                 <div role="alert" class="alert alert-error alert-soft mb-6">
@@ -28,19 +27,14 @@
             <?php endif; ?>
             <form action="<?= base_url('/login/process') ?>" method="post">
                 <input type="text" placeholder="Email" class="input w-full mb-4" name="email" required />
-                <input type="password" placeholder="Password" name="password" class="input w-full mb-4" required />
+                <input type="password" placeholder="Password" name="password" class="input w-full mb-6" required />
                 <div class="login-submit flex flex-col">
-                    <label class="label text-xs font-semibold mb-5 w-50" style="color: var(--secondary-text);">
-                    <input type="checkbox" checked="checked" class="checkbox checkbox-md checked:bg-[#5160FC] checked:text-[#ffffff]" />
-                    Ingat saya
-                    </label>
-                    <button type="submit" class="btn bg-[#5160FC] text-[#ffffff] w-full md:w-50">Login</button>
+                    <button type="submit" class="btn btn-lg bg-[#4BC355] text-[#ffffff] w-full">Login</button>
                 </div>
             </form>
         </div>
-        <div class="col-span-12 md:col-span-6 p-3">
-            <div class="bg-login h-96 md:min-h-screen flex items-center justify-center text-center rounded-xl" style="background-image: url(<?= base_url('assets/img/bg-login.png') ?>); background-repeat:repeat">
-                <img src="<?= base_url('assets/img/vector-login.svg') ?>" alt="">
+        <div class="col-span-12 md:col-span-6">
+            <div class="bg-login h-96 md:min-h-screen flex items-center justify-center" style="background-image: url(<?= base_url('assets/img/bg-login.png') ?>); background-repeat:repeat;">
             </div>
         </div>
       </div>
