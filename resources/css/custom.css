@@ -43,15 +43,9 @@
     --almost-black: #111111;
     --black: #000000;
 
-    --primary-color: #5160FC;
-    --secondary-color: #FFFFFF;
+    /* Text */
     --dark-text: #333333;
     --light-text: #FFFFFF;
-    --light-stroke: #FFFFFF;
-    --secondary-text: #86949F;
-    --primary-stroke: #99AAB8;
-    --secondary-stroke: #C0CFDB;
-    --background-color: #F7F7FF;
 }
 
 body {

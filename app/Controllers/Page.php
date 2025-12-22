@@ -7,4 +7,11 @@ class Page extends BaseController {
     public function login() {
         return view('auth/login');
     }
+
+    public function home() {
+        return view('pages/view_home', [
+            'menu' => 'home',
+            'pageTitle' => 'Home'
+        ]);
+    }
 }

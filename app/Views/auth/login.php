@@ -17,8 +17,8 @@
                 <h2 class="self-center font-bold" style="color: var(--primary-600)">UangKemana</h2>
             </div>
             <div class="greet mb-6">
-                <h1 class="font-bold mb-3">Login</h1>
-                <p class="text-sm font-semibold" style="color: var(--secondary-text);">Masukkan data anda untuk akses akun.</p>
+                <h1 class="font-bold mb-3" style="color: var(--dark-text)">Login</h1>
+                <p class="text-sm font-semibold" style="color: var(--tinted-gray);">Masukkan data anda untuk akses akun.</p>
             </div>
             <?php if (session()->getFlashdata('error')) : ?>
                 <div role="alert" class="alert alert-error alert-soft mb-6">
@@ -26,8 +26,8 @@
                 </div>
             <?php endif; ?>
             <form action="<?= base_url('/login/process') ?>" method="post">
-                <input type="text" placeholder="Email" class="input w-full mb-4" name="email" required />
-                <input type="password" placeholder="Password" name="password" class="input w-full mb-6" required />
+                <input type="text" placeholder="Email" class="input w-full mb-4" id="password" name="email" required />
+                <input type="password" placeholder="Password" id="password" name="password" class="input w-full mb-6" required />
                 <div class="login-submit flex flex-col">
                     <button type="submit" class="btn btn-lg bg-[#4BC355] text-[#ffffff] w-full">Login</button>
                 </div>
