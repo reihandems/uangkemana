@@ -7,7 +7,7 @@ use App\Models\UserModel;
 class Auth extends BaseController {
     public function login() {
         if (session()->get('logged_in')) {
-            return redirect()->to('/admin/dashboard');
+            return redirect()->to('/home');
         }
         return view('auth/login');
     }
@@ -20,23 +20,21 @@ class Auth extends BaseController {
         $password = $this->request->getPost('password');
 
         // Ambil user + role
-        $user = $model->getUserByEmail($email);
+        $user = $model->where('email', $email)->first();
 
         // Validasi login
-        if (!$user || !password_verify($password, $user['password'])) {
-            return redirect()->back()
-                ->with('error', 'Email atau Password salah.')
-                ->withInput();
+        if ($user || password_verify($password, $user['password'])) {
+            // Set session
+            $session->set([
+                'user_id'    => $user['user_id'],
+                'user_nama'  => $user['name'],  
+                'user_email' => $user['email'],
+                'user_gambar' => $user['gambar'],
+                'logged_in'  => true
+            ]);
+            return redirect()->to('/home');
         }
-
-        // Set session
-        $session->set([
-            'user_id'    => $user['user_id'],
-            'user_nama'  => $user['name'],  
-            'user_email' => $user['email'],
-            'user_gambar' => $user['gambar'],
-            'logged_in'  => true
-        ]);
+        return redirect()->back()->with('error', 'Email atau password salah.')->withInput();
     }
 
 

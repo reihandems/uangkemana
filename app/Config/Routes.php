@@ -12,9 +12,11 @@ $routes->get('/login', 'Page::login');
 $routes->post('/login/process', 'Auth::loginProcess');
 $routes->get('/logout', 'Auth::logout');
 
-$routes->get('/dashboard', function() {
+$routes->get('/home', function() {
     if (!session()->get('logged_in')) {
         return redirect()->to('/login');
     }
-    return view('pages/admin/view_dashboard');
+    return view('pages/view_home');
 });
+
+$routes->get('/home', 'Page::home');
