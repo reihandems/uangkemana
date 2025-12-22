@@ -82,23 +82,23 @@ h6 {
     padding: 12px 14px;
     font-size: 12px;
     border-radius: 12px;
-    color: var(--secondary-text);
+    color: var(--pale-gray);
     font-weight: 600;
     margin-bottom: 32px;
 }
 
 .sidebar .list-menu svg {
-    color: var(--secondary-text);
+    color: var(--pale-gray);
 }
 
 .sidebar .list-menu.active {
-    background-color: var(--primary-color);
-    color: var(--light-text);
+    background-color: var(--primary-100);
+    color: var(--primary-500);
     font-weight: 900;
 }
 
 .sidebar .list-menu.active svg {
-    color: var(--light-text);
+    color: var(--primary-500);
 }
 
 .page-title {
