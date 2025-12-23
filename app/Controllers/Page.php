@@ -15,4 +15,12 @@ class Page extends BaseController {
             'subTitle' => 'Selamat Datang! Ini adalah ringkasan keuangan anda'
         ]);
     }
+
+    public function transaksi() {
+        return view('pages/view_transaksi', [
+            'menu' => 'transaksi',
+            'pageTitle' => 'Transaksi',
+            'subTitle' => 'Lacak dan analisis keuangan anda'
+        ]);
+    }
 }

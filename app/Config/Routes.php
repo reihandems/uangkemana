@@ -13,3 +13,4 @@ $routes->post('/login/process', 'Auth::loginProcess');
 $routes->get('/logout', 'Auth::logout');
 
 $routes->get('/dashboard', 'Page::home', ['filter' => 'auth']);
+$routes->get('/transaksi', 'Page::transaksi', ['filter' => 'auth']);
