@@ -11,7 +11,7 @@
         <div class="breadcrumbs text-sm">
             <ul>
                 <li><a href="<?= base_url('/transaksi') ?>">Transaksi</a></li>
-                <li><a>Detail Transaksi</a></li>
+                <li>Detail Transaksi</li>
             </ul>
         </div>
         <h2 class="page-title" style="color: var(--dark-text);"><?= $pageTitle ?? '' ?></h2>
