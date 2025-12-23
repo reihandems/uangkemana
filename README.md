@@ -1,68 +1,110 @@
-# CodeIgniter 4 Application Starter
+# 💰 UangKemana
 
-## What is CodeIgniter?
+UangKemana adalah aplikasi money tracker berbasis web yang membantu pengguna mencatat pemasukan dan pengeluaran, mengelola dompet, serta membuat target keuangan (budget) secara terstruktur. Project ini dikembangkan sebagai tugas kelompok mata kuliah Pemrograman Framework dengan fokus pada penerapan konsep MVC, UML, dan integrasi UI/UX ke dalam sistem backend.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## 🚀 Fitur Utama
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- Autentikasi pengguna (Register & Login)
+- Manajemen dompet (Wallet)
+- Pencatatan transaksi pemasukan dan pengeluaran
+- Pengelolaan kategori transaksi
+- Budget berbasis target (Goal-based Budgeting)
+- Dashboard ringkasan keuangan
+- Antarmuka modern menggunakan Tailwind CSS dan DaisyUI
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 🛠️ Teknologi yang Digunakan
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+Backend:
+- PHP 8+
+- CodeIgniter 4
+- MySQL / MariaDB
 
-## Installation & updates
+Frontend:
+- Tailwind CSS (CLI)
+- DaisyUI
+- HTML (View CodeIgniter 4)
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+Tools Pendukung:
+- Node.js & npm
+- phpMyAdmin
+- PlantUML (UML Diagram)
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## 🧱 Arsitektur Aplikasi
 
-## Setup
+Aplikasi UangKemana menerapkan arsitektur MVC (Model–View–Controller), di mana Model bertugas mengelola data dan interaksi dengan database, View menangani tampilan antarmuka pengguna, dan Controller mengatur alur logika aplikasi.
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+Perancangan sistem juga dilengkapi dengan diagram UML berikut:
+- Use Case Diagram
+- Activity Diagram
+- Sequence Diagram
+- Class Diagram
+- ERD (Entity Relationship Diagram)
 
-## Important Change with index.php
+## 🗄️ Struktur Database
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Struktur database dirancang berdasarkan kebutuhan sistem dan disesuaikan dengan desain UI/UX aplikasi. Entity utama yang digunakan dalam aplikasi ini meliputi:
+- users
+- wallets
+- categories
+- transactions
+- budgets
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## ⚙️ Instalasi & Setup
 
-**Please** read the user guide for a better explanation of how CI4 works!
+1. Clone repository  
+    git clone https://github.com/username/uangkemana.git  
+    cd uangkemana  
 
-## Repository Management
+2. Install dependency backend  
+    composer install  
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+3. Install dependency frontend  
+    npm install  
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+4. Konfigurasi environment  
+   Salin file .env.example menjadi .env, lalu sesuaikan konfigurasi database:  
 
-## Server Requirements
+    database.default.hostname = localhost  
+    database.default.database = db_uangkemana  
+    database.default.username = root  
+    database.default.password =  
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+5. Build Tailwind CSS  
+    npm run dev  
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+6. Jalankan server  
+    php spark serve  
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+Akses aplikasi melalui browser:  
+    http://localhost:8080  
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## 📂 Struktur Folder Penting
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+    app/
+     ├── Controllers/
+     ├── Models/
+     ├── Views/
+
+    public/
+     └── assets/css/output.css
+
+    resources/
+     └── css/input.css
+
+## 📑 Catatan Pengembangan
+
+- Validasi dan pengecekan data dilakukan melalui phpMyAdmin
+- Styling menggunakan Tailwind CSS CLI yang terintegrasi dengan DaisyUI
+- Project berfokus pada penerapan konsep framework, UML, dan integrasi UI/UX
+
+## 👥 Tim Pengembang
+
+Project ini dikembangkan oleh kelompok 7 sebagai bagian dari tugas akademik mata kuliah Pemrograman Framework.
+
+## 📜 Lisensi
+
+Project ini dibuat untuk keperluan pembelajaran dan akademik. Bebas digunakan sebagai referensi dengan mencantumkan sumber.
+
+## ✨ Penutup
+
+UangKemana dikembangkan untuk menunjukkan pemahaman dalam pemrograman framework, perancangan sistem menggunakan UML, serta integrasi desain UI/UX dengan implementasi backend.
