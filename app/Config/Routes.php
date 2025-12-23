@@ -12,4 +12,4 @@ $routes->get('/login', 'Page::login');
 $routes->post('/login/process', 'Auth::loginProcess');
 $routes->get('/logout', 'Auth::logout');
 
-$routes->get('/home', 'Page::home', ['filter' => 'auth']);
+$routes->get('/dashboard', 'Page::home', ['filter' => 'auth']);

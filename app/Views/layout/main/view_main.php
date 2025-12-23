@@ -17,9 +17,10 @@
         </div>
         <!-- Sidebar end -->
         <!-- Kanan -->
-        <div class=" col-span-12 md:col-span-9 min-h-screen" style="padding: 30px 30px 30px 40px; background-color: var(--background-color);">
-            <?= $this->include('layout/header') ?>
-            <hr class="my-4" style="color: var(--secondary-stroke);">
+        <div class=" col-span-12 md:col-span-9 min-h-screen">
+            <div class="bg-[#ffffff]">
+                <?= $this->include('layout/header') ?>
+            </div>
             <?= $this->renderSection('content') ?>
         </div>
         <!-- Kanan end -->

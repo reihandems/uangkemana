@@ -10,8 +10,9 @@ class Page extends BaseController {
 
     public function home() {
         return view('pages/view_home', [
-            'menu' => 'home',
-            'pageTitle' => 'Home'
+            'menu' => 'dashboard',
+            'pageTitle' => 'Dashboard',
+            'subTitle' => 'Selamat Datang! Ini adalah ringkasan keuangan anda'
         ]);
     }
 }
