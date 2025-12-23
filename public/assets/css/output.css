@@ -2569,6 +2569,9 @@
   .justify-center {
     justify-content: center;
   }
+  .justify-start {
+    justify-content: flex-start;
+  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -2917,6 +2920,11 @@
       grid-column: span 9 / span 9;
     }
   }
+  .md\:block {
+    @media (width >= 48rem) {
+      display: block;
+    }
+  }
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;
@@ -2932,6 +2940,16 @@
       flex-direction: row;
     }
   }
+  .md\:items-center {
+    @media (width >= 48rem) {
+      align-items: center;
+    }
+  }
+  .md\:justify-between {
+    @media (width >= 48rem) {
+      justify-content: space-between;
+    }
+  }
   .md\:py-12 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 12);
@@ -2940,6 +2958,12 @@
   .md\:pr-40 {
     @media (width >= 48rem) {
       padding-right: calc(var(--spacing) * 40);
+    }
+  }
+  .md\:text-5xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-5xl);
+      line-height: var(--tw-leading, var(--text-5xl--line-height));
     }
   }
   .lg\:drawer-open {

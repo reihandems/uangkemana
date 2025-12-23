@@ -1,10 +1,10 @@
 <!-- Header -->
-<div class="flex flex-col md:flex-row justify-between items-center py-5 px-8">
+<div class="flex flex-row justify-between items-center py-5 px-8">
     <div class="flex flex-col">
         <h2 class="page-title" style="color: var(--dark-text);"><?= $pageTitle ?? '' ?></h2>
-        <p class="text-sm font-medium" style="color: var(--tinted-gray);"><?= $subTitle ?? '' ?></p>
+        <p class="text-sm font-medium hidden md:block" style="color: var(--tinted-gray);"><?= $subTitle ?? '' ?></p>
     </div>
-    <div class="end-header flex flex-row items-center gap-3 ml-auto">
+    <div class="end-header flex flex-row items-center gap-3">
         <!-- Notif -->
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn m-1 bg-base-100">
@@ -33,9 +33,7 @@
                 <li><a>Item 2</a></li>
             </ul>
         </div>
-        <div class="flex flex-col items-stretch">
-            <p class="font-bold text-xs"><?= session()->get('user_nama') ?></p>
-        </div>  
+        <p class="font-bold text-xs hidden md:block"><?= session()->get('user_nama') ?></p>
         <!-- Avatar end -->
         </div>
 </div>

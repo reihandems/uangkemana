@@ -6,7 +6,7 @@
             <!-- Saldo -->
             <div class="col-span-12 sm:col-span-8 bg-primary-500 rounded-xl text-white p-8">
                 <p class="text-sm mb-2">Saldo: IDR </p>
-                <p class="text-5xl font-black">Rp. 5,436,788</p>
+                <p class=" text-3xl md:text-5xl font-black">Rp. 5,436,788</p>
             </div>
             <!-- Saldo end -->
             <!-- Budget -->
