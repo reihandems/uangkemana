@@ -1892,9 +1892,6 @@
       grid-row-start: 2;
     }
   }
-  .row-span-4 {
-    grid-row: span 4 / span 4;
-  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -1998,6 +1995,9 @@
   }
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
+  }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
   }
   .ml-auto {
     margin-left: auto;
@@ -2280,6 +2280,21 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-r {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 1px;
+  }
+  .border-r-1 {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 1px;
+  }
+  .border-r-4 {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 4px;
+  }
+  .border-\[\#F6F6F6\] {
+    border-color: #F6F6F6;
+  }
   .border-\[\#e5e5e5\] {
     border-color: #e5e5e5;
   }
@@ -2390,10 +2405,6 @@
   .opacity-50 {
     opacity: 50%;
   }
-  .shadow {
-    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -2429,19 +2440,9 @@
       --size: calc(var(--size-field, 0.25rem) * 12);
     }
   }
-  .sm\:visible {
-    @media (width >= 40rem) {
-      visibility: visible;
-    }
-  }
   .sm\:col-span-4 {
     @media (width >= 40rem) {
       grid-column: span 4 / span 4;
-    }
-  }
-  .sm\:hidden {
-    @media (width >= 40rem) {
-      display: none;
     }
   }
   .sm\:modal-middle {
@@ -2461,11 +2462,6 @@
           --modal-br: var(--radius-box);
         }
       }
-    }
-  }
-  .md\:visible {
-    @media (width >= 48rem) {
-      visibility: visible;
     }
   }
   .md\:col-span-3 {
@@ -2613,6 +2609,7 @@
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
   height: auto !important;
+  background-color: #F5F5F5;
 }
 h1 {
   font-size: 2em;
@@ -2633,8 +2630,8 @@ h6 {
   font-size: 0.67em;
 }
 .sidebar .list-menu {
-  padding: 12px 14px;
-  font-size: 12px;
+  padding: 16px 14px;
+  font-size: 16px;
   border-radius: 12px;
   color: var(--pale-gray);
   font-weight: 600;

@@ -51,6 +51,7 @@
 body {
     font-family: "Plus Jakarta Sans", sans-serif;
     height: auto !important;
+    background-color: #F5F5F5;
 
 }
 
@@ -79,8 +80,8 @@ h6 {
 }
 
 .sidebar .list-menu {
-    padding: 12px 14px;
-    font-size: 12px;
+    padding: 16px 14px;
+    font-size: 16px;
     border-radius: 12px;
     color: var(--pale-gray);
     font-weight: 600;
