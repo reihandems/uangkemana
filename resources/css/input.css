@@ -2,4 +2,7 @@
 @plugin "daisyui" {
     themes: light --default;
 }
+@theme {
+  --color-custom-primary: #4BC355; /* Define your custom color */
+}
 @import "./custom.css";

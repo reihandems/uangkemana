@@ -7,7 +7,7 @@ use App\Models\UserModel;
 class Auth extends BaseController {
     public function login() {
         if (session()->get('logged_in')) {
-            return redirect()->to('/home');
+            return redirect()->to('/dashboard');
         }
         return view('auth/login');
     }
@@ -32,7 +32,7 @@ class Auth extends BaseController {
                 'user_gambar' => $user['gambar'],
                 'logged_in'  => true
             ]);
-            return redirect()->to('/home');
+            return redirect()->to('/dashboard');
         }
         return redirect()->back()->with('error', 'Email atau password salah.')->withInput();
     }
