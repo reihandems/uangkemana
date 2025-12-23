@@ -2127,11 +2127,6 @@
       --alert-color: var(--color-error);
     }
   }
-  .progress-success {
-    @layer daisyui.l1.l2 {
-      color: var(--color-success);
-    }
-  }
   .text-\[\#ffffff\] {
     color: #ffffff;
   }
