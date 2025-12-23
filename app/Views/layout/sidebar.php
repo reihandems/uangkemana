@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="drawer lg:drawer-open h-full border-r border-[#F6F6F6]" style="background-color: var(--white);">
+<div class="drawer lg:drawer-open h-full border-r border-almost-white" style="background-color: var(--white);">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col m-3">
         <!-- Page content here -->
@@ -14,7 +14,7 @@
             </div>
             <hr class="my-5" style="color: var(--shaded-white)">
             <!-- Open the modal using ID.showModal() method -->
-            <button class="btn btn-lg bg-[#4BC355] text-white w-full" onclick="modal_transaksi.showModal()">+ Tambah Transaksi</button>
+            <button class="btn btn-lg bg-primary-500 text-white w-full" onclick="modal_transaksi.showModal()">+ Tambah Transaksi</button>
             <hr class="my-5" style="color: var(--shaded-white)">
             <ul>
                 <li class="list-menu <?= ($menu ?? '') == 'dashboard' ? 'active' : '' ?>">
@@ -90,7 +90,7 @@
             </div>
             <hr class="my-5" style="color: var(--shaded-white)">
             <!-- Open the modal using ID.showModal() method -->
-            <button class="btn btn-lg bg-[#4BC355] text-white w-full" onclick="modal_transaksi.showModal()">+ Tambah Transaksi</button>
+            <button class="btn btn-lg bg-primary-500 text-white w-full" onclick="modal_transaksi.showModal()">+ Tambah Transaksi</button>
             <hr class="my-5" style="color: var(--shaded-white)">
             <ul>
                 <li class="list-menu <?= ($menu ?? '') == 'dashboard' ? 'active' : '' ?>">

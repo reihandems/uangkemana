@@ -3,6 +3,52 @@
     themes: light --default;
 }
 @theme {
-  --color-custom-primary: #4BC355; /* Define your custom color */
+  /* Primary Color */
+  --color-primary-100: #E5FCDC;
+  --color-primary-200: #C7F9BB;
+  --color-primary-300: #9EEC95;
+  --color-primary-400: #76DB75;
+  --color-primary-500: #4BC355;
+  --color-primary-600: #36A74A;
+  --color-primary-700: #258C40;
+  --color-primary-800: #177137;
+  --color-primary-900: #0E5D31;
+
+  /* Danger Color */
+  --color-danger-100: #FFE5D3;
+  --color-danger-200: #FFC4A9;
+  --color-danger-300: #FF9C7E;
+  --color-danger-400: #FF765D;
+  --color-danger-500: #FF3728;
+  --color-danger-600: #DB1D1F;
+  --color-danger-700: #B71423;
+  --color-danger-800: #930C24;
+  --color-danger-900: #7A0725;
+
+  /* Grayscale - White */
+  --color-white: #FFFFFF;
+  --color-almost-white: #F6F6F6;
+  --color-shaded-white: #DDDDDD;
+  --color-dark-white: #CCCCCC;
+
+  /* Grayscale - Gray */
+  --color-silver: #BBBBBB;
+  --color-pale-gray: #AAAAAA;
+  --color-light-gray: #999999;
+  --color-tinted-gray: #888888;
+  --color-medium-gray: #777777;
+  --color-shaded-gray: #666666;
+  --color-dark-gray: #555555;
+
+  /* Grayscale - Black */
+  --color-pale-black: #444444;
+  --color-light-black: #333333;
+  --color-tinted-black: #222222;
+  --color-almost-black: #111111;
+  --color-black: #000000;
+
+  /* Text */
+  --color-dark-text: #333333;
+  --color-light-text: #FFFFFF;
 }
 @import "./custom.css";

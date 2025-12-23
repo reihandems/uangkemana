@@ -4,21 +4,21 @@
     <div class="ringkasan font-semibold p-8">
         <div class="grid grid-cols-12 gap-5">
             <!-- Saldo -->
-            <div class="col-span-12 sm:col-span-8 bg-[#4BC355] rounded-xl text-white p-8">
+            <div class="col-span-12 sm:col-span-8 bg-primary-500 rounded-xl text-white p-8">
                 <p class="text-sm mb-2">Saldo: IDR </p>
                 <p class="text-5xl font-black">Rp. 5,436,788</p>
             </div>
             <!-- Saldo end -->
             <!-- Budget -->
-            <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-[#DDDDDD] px-6 py-4">
+            <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
                 <p class="text-sm" style="color: var(--light-gray);">Liburan</p>
                 <h2>Rp. 10,000,000</h2>
-                <progress class="progress text-custom-primary w-56" value="70" max="100"></progress>
+                <progress class="progress text-primary-500 w-56" value="70" max="100"></progress>
                 <p class="text-xs mt-2" style="color: var(--light-gray);">70% Complete</p>
             </div>
             <!-- Budget end-->
             <!-- Pemasukan Pengeluaran -->
-            <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-[#DDDDDD]">
+            <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                 <p class="text-sm mb-2" style="color: var(--light-gray);">Pemasukan</p>
                 <div class="flex flex-row items-center">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
                     <h1 class="ml-2" style="color: var(--dark-text);">Rp. 8,501,001</h1>
                 </div>
             </div>
-            <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-[#DDDDDD]">
+            <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                 <p class="text-sm mb-2" style="color: var(--light-gray);">Pengeluaran</p>
                 <div class="flex flex-row items-center">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
             </div>
             <!-- Pemasukan Pengeluaran end-->
             <!-- Transaksi-->
-            <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-[#DDDDDD]">
+            <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                 <div class="flex flex-row justify-between">
                     <h3>Transaksi Terbaru</h3>
                     <a href="#">
@@ -49,14 +49,14 @@
                 <h4 class="mb-2">Hari Ini</h4>
                 <h5 style="color: var(--tinted-gray)" class="mb-5">23 Desember 2025</h5>
                 <!-- Transaksi List -->
-                <div class="transaksi-home flex flex-row justify-between items-center border border-[#CCCCCC] p-3.5 rounded-lg mb-3">
+                <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
                     <div class="flex flex-col">
                         <p class="text-sm" style="color: var(--light-gray);">Bisnis</p>
                         <h3>Penjualan Makanan</h3>
                     </div>
                     <h3 style="color: var(--primary-500);">+Rp. 120,000</h3>
                 </div>
-                <div class="transaksi-home flex flex-row justify-between items-center border border-[#CCCCCC] p-3.5 rounded-lg">
+                <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg">
                     <div class="flex flex-col">
                         <p class="text-sm" style="color: var(--light-gray);">Kendaraan</p>
                         <h3>Ganti oli</h3>

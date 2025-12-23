@@ -19,7 +19,7 @@
         <!-- Kanan -->
         <div class=" col-span-12 md:col-span-9 min-h-screen">
             <div class="bg-[#ffffff]">
-                <?= $this->include('layout/header') ?>
+                <?= $this->include('layout/header_transaksi') ?>
             </div>
             <?= $this->renderSection('content') ?>
         </div>

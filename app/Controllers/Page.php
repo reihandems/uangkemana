@@ -23,4 +23,11 @@ class Page extends BaseController {
             'subTitle' => 'Lacak dan analisis keuangan anda'
         ]);
     }
+
+    public function transaksiDetail() {
+        return view('pages/view_transaksi_detail', [
+            'menu' => 'transaksi',
+            'pageTitle' => 'Detail Transaksi'
+        ]);
+    }
 }

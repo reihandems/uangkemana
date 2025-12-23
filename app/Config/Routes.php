@@ -14,3 +14,4 @@ $routes->get('/logout', 'Auth::logout');
 
 $routes->get('/dashboard', 'Page::home', ['filter' => 'auth']);
 $routes->get('/transaksi', 'Page::transaksi', ['filter' => 'auth']);
+$routes->get('/transaksi/detail-transaksi', 'Page::transaksiDetail', ['filter' => 'auth']);
