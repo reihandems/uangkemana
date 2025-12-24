@@ -18,3 +18,4 @@ $routes->get('/transaksi/detail-transaksi', 'Page::transaksiDetail', ['filter' =
 $routes->get('/budget', 'Page::budget', ['filter' => 'auth']);
 $routes->get('/budget/detail-budget', 'Page::budgetDetail', ['filter' => 'auth']);
 $routes->get('/dompet', 'Page::dompet', ['filter' => 'auth']);
+$routes->get('/settings', 'Page::settings', ['filter' => 'auth']);

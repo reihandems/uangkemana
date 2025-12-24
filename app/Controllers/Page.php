@@ -53,4 +53,11 @@ class Page extends BaseController {
             'subTitle' => 'Buat dompet untuk menyimpan transaksi'
         ]);
     }
+
+    public function settings() {
+        return view('pages/view_settings', [
+            'menu' => 'settings',
+            'pageTitle' => 'Settings'
+        ]);
+    }
 }

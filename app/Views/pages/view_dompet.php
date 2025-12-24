@@ -1,4 +1,4 @@
-<?= $this->extend('layout/main/view_main') ?>
+<?= $this->extend('layout/main/view_main_dompet') ?>
 <?= $this->section('content') ?>
     <!-- Main Content -->
     <div class="ringkasan font-semibold p-8">
