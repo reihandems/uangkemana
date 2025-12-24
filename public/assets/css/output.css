@@ -51,6 +51,7 @@
     --color-light-gray: #999999;
     --color-tinted-gray: #888888;
     --color-medium-gray: #777777;
+    --color-shaded-gray: #666666;
     --color-dark-gray: #555555;
     --color-dark-text: #333333;
   }
@@ -3068,6 +3069,9 @@
   }
   .text-red-600 {
     color: var(--color-red-600);
+  }
+  .text-shaded-gray {
+    color: var(--color-shaded-gray);
   }
   .text-shaded-white {
     color: var(--color-shaded-white);
