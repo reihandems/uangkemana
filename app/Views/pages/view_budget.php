@@ -3,10 +3,10 @@
     <!-- Main Content -->
     <div class="ringkasan font-semibold p-8">
         <div class="grid grid-cols-12 gap-5">
-            <div class="col-span-12 bg-primary-100 rounded-xl py-0 px-20">
-                <div class="flex flex-row items-center justify-between ">
+            <div class="col-span-12 bg-primary-100 rounded-xl py-4 md:py-0 px-20">
+                <div class="flex flex-col md:flex-row items-center justify-between ">
                     <img src="<?= base_url('assets/img/green-pig.svg') ?>" alt="" class="w-40">
-                    <h2 class="text-primary-800 font-bold text-center">Visualisasikan Finansial Anda</h2>
+                    <h2 class="text-primary-800 font-bold text-center mb-3 md:mb-0">Visualisasikan Finansial Anda</h2>
                     <div class="badge bg-[#FEE355] text-primary-800 border border-[#FEE355] font-black rounded-xl p-6">Mulai Sekarang</div>
                 </div>
             </div>

@@ -38,4 +38,11 @@ class Page extends BaseController {
             'subTitle' => 'Rencanakan dan lacak tujuan pengeluaran anda'
         ]);
     }
+
+    public function budgetDetail() {
+        return view('pages/view_budget_detail', [
+            'menu' => 'budget',
+            'pageTitle' => 'Detail Budget'
+        ]);
+    }
 }
