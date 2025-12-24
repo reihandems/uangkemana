@@ -45,4 +45,12 @@ class Page extends BaseController {
             'pageTitle' => 'Detail Budget'
         ]);
     }
+
+    public function dompet() {
+        return view('pages/view_dompet', [
+            'menu' => 'dompet',
+            'pageTitle' => 'Dompet',
+            'subTitle' => 'Buat dompet untuk menyimpan transaksi'
+        ]);
+    }
 }

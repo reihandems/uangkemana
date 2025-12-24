@@ -41,7 +41,7 @@
             <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                 <div class="flex flex-row justify-between">
                     <h3>Transaksi Terbaru</h3>
-                    <a href="#">
+                    <a href="<?= base_url('/transaksi') ?>"
                         <p class="font-black" style="color: var(--primary-500);">Lainnya</p>
                     </a>
                 </div>
