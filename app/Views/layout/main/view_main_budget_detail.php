@@ -28,8 +28,71 @@
     <!-- Modal Transaksi -->
     <dialog id="modal_transaksi" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
+            <p class="font-bold text-xl md:text-2xl">Transaksi Baru</p>
+            <hr class="text-shaded-white my-5">
+            <!-- Form -->
+            <form action="">
+                <div class="grid grid-cols-12 gap-3">
+                    <div class="col-span-12">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Dompet</legend>
+                            <select class="select w-full">
+                                <option disabled selected>-- Pilih Dompet --</option>
+                                <option>Chrome</option>
+                                <option>FireFox</option>
+                                <option>Safari</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="col-span-6">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Tipe</legend>
+                            <select class="select w-full">
+                                <option disabled selected>-- Pilih Tipe Transaksi --</option>
+                                <option>Chrome</option>
+                                <option>FireFox</option>
+                                <option>Safari</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="col-span-6">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Nama Kategori</legend>
+                            <select class="select w-full">
+                                <option disabled selected>-- Pilih Kategori --</option>
+                                <option>Chrome</option>
+                                <option>FireFox</option>
+                                <option>Safari</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="col-span-6">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Tanggal</legend>
+                            <input type="date" class="input" />
+                        </fieldset>
+                    </div>
+                    <div class="col-span-6">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Jam</legend>
+                            <input type="time" class="input" />
+                        </fieldset>
+                    </div>
+                    <div class="col-span-12">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Nominal</legend>
+                            <input type="number" class="input w-full" placeholder="Masukkan Nominal Transaksi" />
+                        </fieldset>
+                    </div>
+                    <div class="col-span-12">
+                        <fieldset class="fieldset">
+                            <legend class="fieldset-legend">Catatan (Optional)</legend>
+                            <input type="text" class="input w-full" placeholder="Catatan Transaksi" />
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+            <!-- Form end -->
             <div class="modal-action">
             <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
