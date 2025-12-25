@@ -12,9 +12,9 @@ class Page extends BaseController {
     public function transaksi() {
         $data = $this->loadGlobalData();
 
-        $data['menu'] = 'dashboard';
-        $data['pageTitle'] = 'Dashboard';
-        $data['subTitle'] = 'Selamat datang! ini adalah ringkasan keuangan anda';
+        $data['menu'] = 'transaksi';
+        $data['pageTitle'] = 'Transaksi';
+        $data['subTitle'] = 'Lacak dan analisis transaksi keuangan anda';
 
         return view('pages/view_transaksi', $data);
     }
