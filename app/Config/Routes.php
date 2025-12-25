@@ -12,6 +12,13 @@ $routes->get('/login', 'Page::login');
 $routes->post('/login/process', 'Auth::loginProcess');
 $routes->get('/logout', 'Auth::logout');
 
+// AUTENTIKASI - REGISTER
+$routes->get('/register', 'Auth::registerBuatAkun');
+$routes->post('/register/akun-process', 'Auth::registerBuatAkunProcess');
+$routes->get('/register/buat-dompet', 'Auth::registerBuatDompet');
+$routes->post('/register/buat-dompet/dompet-process', 'Auth::registerBuatDompetProcess');
+
+
 $routes->get('/dashboard', 'Page::home', ['filter' => 'auth']);
 $routes->get('/transaksi', 'Page::transaksi', ['filter' => 'auth']);
 $routes->get('/transaksi/detail-transaksi', 'Page::transaksiDetail', ['filter' => 'auth']);

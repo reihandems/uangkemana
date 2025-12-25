@@ -50,5 +50,12 @@
   /* Text */
   --color-dark-text: #333333;
   --color-light-text: #FFFFFF;
+
+  /* Tambahkan Mapping Langsung untuk daisyUI */
+  --p: var(--color-primary-500);         /* Ini untuk step-primary */
+  --pc: #ffffff;                         /* Warna teks/centang di dalam step */
+  
+  --er: var(--color-danger-500);         /* Ini jika nanti pakai step-error */
+  --erc: #ffffff;
 }
 @import "./custom.css";
