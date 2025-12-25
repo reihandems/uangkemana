@@ -2041,6 +2041,9 @@
   .my-2 {
     margin-block: calc(var(--spacing) * 2);
   }
+  .my-3 {
+    margin-block: calc(var(--spacing) * 3);
+  }
   .my-4 {
     margin-block: calc(var(--spacing) * 4);
   }
@@ -2370,9 +2373,6 @@
       width: var(--size);
       height: var(--size);
     }
-  }
-  .h-96 {
-    height: calc(var(--spacing) * 96);
   }
   .h-full {
     height: 100%;
@@ -2807,11 +2807,6 @@
       display: none;
     }
   }
-  .md\:min-h-screen {
-    @media (width >= 48rem) {
-      min-height: 100vh;
-    }
-  }
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
@@ -2825,11 +2820,6 @@
   .md\:py-0 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 0);
-    }
-  }
-  .md\:py-10 {
-    @media (width >= 48rem) {
-      padding-block: calc(var(--spacing) * 10);
     }
   }
   .md\:py-12 {
