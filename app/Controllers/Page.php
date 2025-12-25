@@ -10,11 +10,13 @@ class Page extends BaseController {
     }
 
     public function transaksi() {
-        return view('pages/view_transaksi', [
-            'menu' => 'transaksi',
-            'pageTitle' => 'Transaksi',
-            'subTitle' => 'Lacak dan analisis keuangan anda'
-        ]);
+        $data = $this->loadGlobalData();
+
+        $data['menu'] = 'dashboard';
+        $data['pageTitle'] = 'Dashboard';
+        $data['subTitle'] = 'Selamat datang! ini adalah ringkasan keuangan anda';
+
+        return view('pages/view_transaksi', $data);
     }
 
     public function transaksiDetail() {

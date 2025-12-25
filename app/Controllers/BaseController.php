@@ -6,6 +6,8 @@ use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Models\DompetModel;
+use App\Models\KategoriModel;
 
 /**
  * BaseController provides a convenient place for loading components
@@ -41,5 +43,24 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
         // $this->session = service('session');
+    }
+    
+    protected function loadGlobalData()
+    {
+        $data = [];
+
+        if (session()->get('logged_in')) {
+            $dompetModel = new DompetModel();
+            $data['dompet'] = $dompetModel
+                ->where('user_id', session()->get('user_id'))
+                ->findAll();
+            $kategoriModel = new KategoriModel();
+            $data['kategori'] = $kategoriModel->findAll();
+        } else {
+            $data['dompet'] = [];
+            $data['kategori'] = [];
+        }
+
+        return $data;
     }
 }

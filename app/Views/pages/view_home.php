@@ -64,29 +64,25 @@
             <?php else: ?>
                 <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                     <div class="flex flex-row justify-between">
-                        <h3>Transaksi Terbaru</h3>
+                        <h3>Transaksi Terakhir</h3>
                         <a href="<?= base_url('/transaksi') ?>"
                             <p class="font-black" style="color: var(--primary-500);">Lainnya</p>
                         </a>
                     </div>
                     <hr class="my-5" style="color: var(--shaded-white);">
-                    <h4 class="mb-2">Hari Ini</h4>
-                    <h5 style="color: var(--tinted-gray)" class="mb-5">23 Desember 2025</h5>
+                    <h4 style="color: var(--tinted-gray)" class="mb-5 font-semibold">
+                        <?= labelTanggal($tanggalTerakhir) ?>
+                    </h4>
                     <!-- Transaksi List -->
+                    <?php foreach ($transaksiTerbaru as $trt) : ?>
                     <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
                         <div class="flex flex-col">
-                            <p class="text-sm" style="color: var(--light-gray);">Bisnis</p>
-                            <h3>Penjualan Makanan</h3>
+                            <p class="text-sm mb-1" style="color: var(--light-gray);"><?= $trt['type'] ?></p>
+                            <h3><?= $trt['nama_kategori'] ?></h3>
                         </div>
-                        <h3 style="color: var(--primary-500);">+Rp. 120,000</h3>
+                        <h3><?= formatNominal($trt['nominal'], $trt['type']) ?></h3>
                     </div>
-                    <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg">
-                        <div class="flex flex-col">
-                            <p class="text-sm" style="color: var(--light-gray);">Kendaraan</p>
-                            <h3>Ganti oli</h3>
-                        </div>
-                        <h3 style="color: var(--danger-500);">-Rp. 50,000</h3>
-                    </div>
+                    <?php endforeach; ?>
                     <!-- Transaksi List -->
                 </div>
             <?php endif; ?>
@@ -95,3 +91,25 @@
     </div>
     <!-- Main Content end -->
 <?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tipeSelect = document.getElementById('tipeTransaksi');
+        const kategoriSelect = document.getElementById('kategoriSelect');
+        const kategoriOptions = kategoriSelect.querySelectorAll('option[data-type]');
+
+        tipeSelect.addEventListener('change', function () {
+            const selectedType = this.value;
+
+            kategoriSelect.disabled = !selectedType;
+            kategoriSelect.value = '-- Pilih Kategori --';
+
+            kategoriOptions.forEach(option => {
+                option.style.display =
+                    option.dataset.type === selectedType ? 'block' : 'none';
+            });
+        });
+    });
+    </script>
+<?= $this->endSection(); ?>

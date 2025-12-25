@@ -52,18 +52,27 @@ class Dashboard extends BaseController
             ->join('dompet', 'dompet.dompet_id = transaksi.dompet_id')
             ->where('transaksi.user_id', $userId)
             ->orderBy('transaction_at', 'DESC')
-            ->findAll(5);
+            ->findAll(3);
 
-        return view('pages/view_home', [
-            'menu' => 'dashboard',
-            'pageTitle' => 'Dashboard',
-            'subTitle' => 'Selamat Datang! Ini adalah ringkasan keuangan anda',
+        // Ambil tanggal terakhir transaksi
+        $tanggalTerakhir = null;
+        if (!empty($transaksiTerbaru)) {
+            $tanggalTerakhir = $transaksiTerbaru[0]['transaction_at'];
+        }
 
-            'totalSaldo'        => $totalSaldo,
-            'budgetTerbaru'     => $budgetTerbaru,
-            'totalPemasukan'    => $totalPemasukan,
-            'totalPengeluaran'  => $totalPengeluaran,
-            'transaksiTerbaru'  => $transaksiTerbaru
-        ]);
+        $data = $this->loadGlobalData();
+
+        $data['menu'] = 'dashboard';
+        $data['pageTitle'] = 'Dashboard';
+        $data['subTitle'] = 'Selamat datang! ini adalah ringkasan keuangan anda';
+
+        $data ['totalSaldo'] = $totalSaldo;
+        $data ['budgetTerbaru'] = $budgetTerbaru;
+        $data ['totalPemasukan'] = $totalPemasukan;
+        $data ['totalPengeluaran'] = $totalPengeluaran;
+        $data ['transaksiTerbaru'] = $transaksiTerbaru;
+        $data ['tanggalTerakhir'] = $tanggalTerakhir;
+
+        return view('pages/view_home', $data);
     }
 }

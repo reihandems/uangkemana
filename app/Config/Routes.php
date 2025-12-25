@@ -18,8 +18,12 @@ $routes->post('/register/akun-process', 'Auth::registerBuatAkunProcess');
 $routes->get('/register/buat-dompet', 'Auth::registerBuatDompet');
 $routes->post('/register/buat-dompet/dompet-process', 'Auth::registerBuatDompetProcess');
 
+// Tambah Transaksi
+$routes->post('/transaksi/store', 'Transaksi::store', ['filter' => 'auth']);
 
-$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
+$routes->get('/dashboard', 'Page::index', ['filter' => 'auth']);
+$routes->post('/dashboard/store', 'Transaksi::store', ['filter' => 'auth']);
+
 $routes->get('/transaksi', 'Page::transaksi', ['filter' => 'auth']);
 $routes->get('/transaksi/detail-transaksi', 'Page::transaksiDetail', ['filter' => 'auth']);
 $routes->get('/budget', 'Page::budget', ['filter' => 'auth']);
