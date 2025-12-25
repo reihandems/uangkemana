@@ -19,7 +19,7 @@ $routes->get('/register/buat-dompet', 'Auth::registerBuatDompet');
 $routes->post('/register/buat-dompet/dompet-process', 'Auth::registerBuatDompetProcess');
 
 
-$routes->get('/dashboard', 'Page::home', ['filter' => 'auth']);
+$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('/transaksi', 'Page::transaksi', ['filter' => 'auth']);
 $routes->get('/transaksi/detail-transaksi', 'Page::transaksiDetail', ['filter' => 'auth']);
 $routes->get('/budget', 'Page::budget', ['filter' => 'auth']);
