@@ -21,11 +21,13 @@ $routes->post('/register/buat-dompet/dompet-process', 'Auth::registerBuatDompetP
 // Tambah Transaksi
 $routes->post('/transaksi/store', 'Transaksi::store', ['filter' => 'auth']);
 
-$routes->get('/dashboard', 'Page::index', ['filter' => 'auth']);
+$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->post('/dashboard/store', 'Transaksi::store', ['filter' => 'auth']);
 
 $routes->get('/transaksi', 'Page::transaksi', ['filter' => 'auth']);
 $routes->get('/transaksi/detail-transaksi', 'Page::transaksiDetail', ['filter' => 'auth']);
+$routes->get('/transaksi/data', 'Transaksi::data');
+
 $routes->get('/budget', 'Page::budget', ['filter' => 'auth']);
 $routes->get('/budget/detail-budget', 'Page::budgetDetail', ['filter' => 'auth']);
 $routes->get('/dompet', 'Page::dompet', ['filter' => 'auth']);

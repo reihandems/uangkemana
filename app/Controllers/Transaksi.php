@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Services\TransaksiService;
+
 use App\Models\TransaksiModel;
 use App\Models\DompetModel;
 
@@ -75,5 +77,19 @@ class Transaksi extends BaseController
                 ->with('error', $e->getMessage())
                 ->withInput();
         }
+    }
+
+    public function data(){
+        $mode  = $this->request->getGet('mode');
+        $value = $this->request->getGet('value');
+        $userId = session()->get('user_id');
+
+        $service = new TransaksiService();
+
+        return $this->response->setJSON([
+            'summary' => $service->getSummary($userId, $mode, $value),
+            'list'    => $service->getTransaksi($userId, $mode, $value),
+            'chart'   => $service->getChartKategori($userId, $mode, $value)
+        ]);
     }
 }
