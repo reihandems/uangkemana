@@ -8,7 +8,7 @@
                 <p class="font-bold text-xl md:text-2xl">Edit Transaksi</p>
                 <hr class="text-shaded-white my-5">
                 <!-- Form -->
-                <form id="transaksiEditForm" action="<?= base_url('/transaksi/update/'.$transaksi['transaksi_id']) ?>" method="post">
+                <form id="transaksiEditForm" class="form-transaksi" action="<?= base_url('/transaksi/update/'.$transaksi['transaksi_id']) ?>" method="post">
                     <?= csrf_field() ?>
                     <div class="grid grid-cols-12 gap-3">
                         <div class="col-span-12">
@@ -27,7 +27,7 @@
                         <div class="col-span-6">
                             <fieldset class="fieldset">
                                 <legend class="fieldset-legend">Tipe</legend>
-                                <select class="select w-full" id="tipeTransaksi" name="type">
+                                <select class="select w-full tipe-transaksi" name="type">
                                     <option disabled selected>-- Pilih Tipe Transaksi --</option>
                                     <option value="Pemasukan" <?= $transaksi['type']=='Pemasukan'?'selected':'' ?>>Pemasukan</option>
                                     <option value="Pengeluaran" <?= $transaksi['type']=='Pengeluaran'?'selected':'' ?>>Pengeluaran</option>
@@ -37,7 +37,7 @@
                         <div class="col-span-6">
                             <fieldset class="fieldset">
                                 <legend class="fieldset-legend">Nama Kategori</legend>
-                                <select class="select w-full" name="kategori_id" id="kategoriSelect" required>
+                                <select class="select w-full kategori-transaksi" name="kategori_id" required>
                                     <?php foreach ($kategori as $k) : ?>
                                         <option value="<?= $k['kategori_id'] ?>" data-type="<?= $k['type'] ?>" <?= $k['kategori_id'] == $transaksi['kategori_id'] ? 'selected' : '' ?> >
                                             <?= esc($k['nama_kategori']) ?>
@@ -142,34 +142,31 @@
 
 <?= $this->section('scripts') ?>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tipeSelect     = document.getElementById('tipeTransaksi');
-            const kategoriSelect = document.getElementById('kategoriSelect');
+        document.addEventListener('change', function (e) {
 
-            function filterKategori(type) {
-                let hasOption = false;
+            if (!e.target.classList.contains('tipe-transaksi')) return;
 
-                Array.from(kategoriSelect.options).forEach(opt => {
-                    if (opt.dataset.type === type) {
-                        opt.hidden = false;
-                        hasOption = true;
-                    } else {
-                        opt.hidden = true;
-                    }
-                });
+            const form = e.target.closest('.form-transaksi');
+            if (!form) return;
 
-                kategoriSelect.disabled = !hasOption;
-            }
+            const kategoriSelect = form.querySelector('.kategori-transaksi');
+            if (!kategoriSelect) return;
 
-            // === INIT EDIT MODE ===
-            const currentType = tipeSelect.value;
-            filterKategori(currentType);
+            let hasOption = false;
 
-            // === CHANGE TYPE ===
-            tipeSelect.addEventListener('change', function () {
-                kategoriSelect.value = '-- Pilih Nama Kategori --';
-                filterKategori(this.value);
+            Array.from(kategoriSelect.options).forEach(opt => {
+                if (!opt.dataset.type) return;
+
+                if (opt.dataset.type === e.target.value) {
+                    opt.hidden = false;
+                    hasOption = true;
+                } else {
+                    opt.hidden = true;
+                }
             });
+
+            kategoriSelect.disabled = !hasOption;
+            kategoriSelect.value = '';
         });
     </script>
 
