@@ -9,16 +9,6 @@ class Page extends BaseController {
         return view('auth/login');
     }
 
-    public function transaksi() {
-        $data = $this->loadGlobalData();
-
-        $data['menu'] = 'transaksi';
-        $data['pageTitle'] = 'Transaksi';
-        $data['subTitle'] = 'Lacak dan analisis transaksi keuangan anda';
-
-        return view('pages/view_transaksi', $data);
-    }
-
     public function transaksiDetail() {
         return view('pages/view_transaksi_detail', [
             'menu' => 'transaksi',

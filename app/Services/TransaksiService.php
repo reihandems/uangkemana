@@ -5,26 +5,83 @@ namespace App\Services;
 use App\Models\TransaksiModel;
 
 class TransaksiService {
-    public function getTransaksi($userId, $mode, $value){
-        $model = new TransaksiModel();
+    // public function getTransaksi($userId, $mode, $value){
+    //     $model = new TransaksiModel();
+
+    //     if ($mode === 'daily') {
+    //         $model->where('DATE(transaction_at)', $value);
+    //     } else {
+    //         $model->where('DATE_FORMAT(transaction_at, "%Y-%m")', $value);
+    //     }
+
+    //     return $model
+    //         ->select('
+    //         transaksi.*,
+    //         kategori.nama_kategori
+    //         ')
+    //         ->join('kategori', 'kategori.kategori_id = transaksi.kategori_id', 'left')
+    //         ->join('dompet', 'dompet.dompet_id = transaksi.dompet_id', 'left')
+    //         ->where('transaksi.user_id', $userId)
+    //         ->orderBy('transaction_at', 'DESC')
+    //         ->findAll();
+    // }
+
+    public function getList($userId, $mode, $value, $page = 1){
+        $limit  = 5;
+        $offset = ($page - 1) * $limit;
+
+        /*
+        |--------------------------------------------------------------------------
+        | COUNT QUERY
+        |--------------------------------------------------------------------------
+        */
+        $countBuilder = (new TransaksiModel())
+            ->where('transaksi.user_id', $userId);
 
         if ($mode === 'daily') {
-            $model->where('DATE(transaction_at)', $value);
+            $countBuilder->where('DATE(transaction_at)', $value);
         } else {
-            $model->where('DATE_FORMAT(transaction_at, "%Y-%m")', $value);
+            $countBuilder->where('DATE_FORMAT(transaction_at, "%Y-%m")', $value);
         }
 
-        return $model
+        $totalData = $countBuilder->countAllResults();
+
+        /*
+        |--------------------------------------------------------------------------
+        | LIST QUERY (JOIN + LIMIT)
+        |--------------------------------------------------------------------------
+        */
+        $listBuilder = (new TransaksiModel())
             ->select('
-            transaksi.*,
-            kategori.nama_kategori
+                transaksi.transaksi_id,
+                transaksi.type,
+                transaksi.nominal,
+                transaksi.transaction_at,
+                kategori.nama_kategori
             ')
             ->join('kategori', 'kategori.kategori_id = transaksi.kategori_id', 'left')
-            ->join('dompet', 'dompet.dompet_id = transaksi.dompet_id', 'left')
-            ->where('transaksi.user_id', $userId)
+            ->where('transaksi.user_id', $userId);
+
+        if ($mode === 'daily') {
+            $listBuilder->where('DATE(transaction_at)', $value);
+        } else {
+            $listBuilder->where('DATE_FORMAT(transaction_at, "%Y-%m")', $value);
+        }
+
+        $list = $listBuilder
             ->orderBy('transaction_at', 'DESC')
-            ->findAll();
+            ->findAll($limit, $offset);
+
+        return [
+            'data' => $list,
+            'pagination' => [
+                'current_page' => (int) $page,
+                'total_page'   => (int) ceil($totalData / $limit)
+            ]
+        ];
     }
+
+
 
     public function getSummary($userId, $mode, $value){
         $pemasukanModel  = new TransaksiModel();
@@ -50,7 +107,10 @@ class TransaksiService {
             ->selectSum('nominal')
             ->first()['nominal'] ?? 0;
 
+        $total = $pemasukan - $pengeluaran;
+
         return [
+            'total'             => (int) $total,
             'total_pemasukan'   => (int) $pemasukan,
             'total_pengeluaran' => (int) $pengeluaran
         ];

@@ -25,6 +25,13 @@ if (!function_exists('rupiah')) {
         }
     }
 
+    if (!function_exists('formatJam')) {
+        function formatJam($time)
+        {
+            return date('H:i', strtotime($time));
+        }
+    }
+
     if (!function_exists('labelTanggal')) {
     function labelTanggal($date)
     {
@@ -39,6 +46,15 @@ if (!function_exists('rupiah')) {
         } else {
             return tanggalIndo($tanggal);
         }
+    }
+
+    function formatBadge($type)
+    {
+        $class = $type === 'Pemasukan'
+            ? 'bg-primary-200'
+            : 'bg-danger-200';
+
+        return "<div class='badge {$class} text-dark-text p-4'>{$type}</div>";
     }
 }
 

@@ -10,6 +10,18 @@
         </div>
         <div id="transaksi-content">
             <div class="grid grid-cols-12 gap-5">
+                <?php if (session()->getFlashdata('success')): ?>
+                    <div class="toast toast-top toast-center">
+                        <div class="alert alert-success alert-soft border-shaded-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4"/>
+                            </svg>
+                            <span><?= session()->getFlashdata('success') ?></span>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="col-span-12">
                     <div class="flex flex-col-reverse md:flex-row items-center">
                         <div id="tabsContainer" role="tablist" class="tabs tabs-box w-full md:w-auto bg-shaded-white mt-3 md:mt-0"></div>
@@ -21,7 +33,7 @@
                 </div>
                 <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                     <p class="text-sm text-pale-gray">Total </p>
-                    <p class="text-3xl text-primary-500 font-black">Rp. 313,500</p>
+                    <p id="totalTransaksi" class="text-3xl text-primary-500 font-black"></p>
                 </div>
                 <div class="col-span-12 sm:col-span-6">
                     <div class="grid grid-cols-6 gap-5">
@@ -33,7 +45,7 @@
                                 </svg>
                                 <p class="text-sm ml-2" style="color: var(--light-gray);">Pemasukan</p>
                             </div>
-                            <h3 id="totalPemasukan" class="font-bold" style="color: var(--dark-text);">Rp. 402,500</h3>
+                            <h3 id="totalPemasukan" class="font-bold" style="color: var(--dark-text);"></h3>
                         </div>
                         <div class="col-span-3 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                             <div class="flex flex-row items-center mb-1">
@@ -42,7 +54,7 @@
                                 </svg>
                                 <p class="text-sm ml-2" style="color: var(--light-gray);">Pengeluaran</p>
                             </div>
-                            <h3 id="totalPengeluaran" class="font-bold" style="color: var(--dark-text);">Rp. 89,000</h3>
+                            <h3 id="totalPengeluaran" class="font-bold" style="color: var(--dark-text);"></h3>
                         </div>
                         <!-- Pemasukan Pengeluaran end-->
                     </div>
@@ -51,18 +63,9 @@
                 <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                     <h3>List Transaksi</h3>
                     <hr class="my-5" style="color: var(--shaded-white);">
-                    <h4 class="mb-2">Hari Ini</h4>
-                    <h5 style="color: var(--tinted-gray)" class="mb-5">23 Desember 2025</h5>
                     <!-- Transaksi List -->
-                    <a id="listTransaksi" href="<?= base_url('transaksi/detail-transaksi') ?>">
-                        <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
-                            <div class="flex flex-col">
-                                <p class="text-sm" style="color: var(--light-gray);">Bisnis</p>
-                                <h4>Penjualan Makanan</h4>
-                            </div>
-                            <h4 style="color: var(--primary-500);">+Rp. 120,000</h4>
-                        </div>
-                    </a>
+                    <div id="listTransaksi"></div>
+                    <div id="pagination" class="flex justify-center gap-2 mt-4"></div>
                     <!-- Transaksi List -->
                 </div>
                 <!-- Transaksi-->
@@ -71,6 +74,9 @@
                     <h3>Kategori</h3>
                     <hr class="my-5" style="color: var(--shaded-white);">
                     <div>
+                        <div id="emptyChart" class="text-sm text-center text-gray-400 hidden">
+                            Belum ada transaksi pada periode ini
+                        </div>
                         <canvas id="kategoriChart"></canvas>
                     </div>
                 </div>
@@ -104,6 +110,8 @@
         let currentMode  = 'daily';
         let currentValue = new Date().toISOString().slice(0, 10); // hari ini
 
+        let currentPage = 1;
+
         // Skeleton loading
 
         function showLoading() {
@@ -114,23 +122,6 @@
         function hideLoading() {
             document.getElementById('transaksi-loading').classList.add('hidden');
             document.getElementById('transaksi-content').classList.remove('hidden');
-        }
-
-        function loadTransaksi() {
-            showLoading();
-
-            fetch(`/transaksi/data?mode=${currentMode}&value=${currentValue}`)
-                .then(res => res.json())
-                .then(data => {
-                    console.log('DATA:', data);
-
-                    renderSummary(data.summary);
-                    renderList(data.list);
-                    renderChart(data.chart);
-                })
-                .finally(() => {
-                    hideLoading();
-                });
         }
 
         document.addEventListener('DOMContentLoaded', loadTransaksi);
@@ -144,8 +135,12 @@
         }
 
         function renderSummary(summary) {
+            const total        = Number(summary?.total ?? 0);
             const pemasukan  = summary?.total_pemasukan ?? 0;
             const pengeluaran = summary?.total_pengeluaran ?? 0;
+
+            document.getElementById('totalTransaksi').innerText =
+                formatRupiah(total);
 
             document.getElementById('totalPemasukan').innerText =
                 formatRupiah(pemasukan);
@@ -287,16 +282,30 @@
         }
 
         function renderChart(chartData) {
-            if (!kategoriChart) return;
+            const emptyEl = document.getElementById('emptyChart');
 
-            const labels = chartData.map(item => item.nama_kategori);
-            const data   = chartData.map(item => item.total);
+            const hasData = chartData && chartData.length > 0;
 
-            kategoriChart.data.labels = labels;
-            kategoriChart.data.datasets[0].data = data;
+            // Toggle title
+            kategoriChart.options.plugins.title.display = hasData;
+
+            if (!hasData) {
+                kategoriChart.data.labels = [];
+                kategoriChart.data.datasets[0].data = [];
+
+                emptyEl.classList.remove('hidden');
+                kategoriChart.update();
+                return;
+            }
+
+            emptyEl.classList.add('hidden');
+
+            kategoriChart.data.labels = chartData.map(i => i.nama_kategori);
+            kategoriChart.data.datasets[0].data = chartData.map(i => i.total);
 
             kategoriChart.update();
         }
+
 
         function renderList(list) {
             const container = document.getElementById('listTransaksi');
@@ -314,39 +323,72 @@
             }
 
             list.forEach(trx => {
-                console.log(trx);
                 const sign  = trx.type === 'Pemasukan' ? '+' : '-';
                 const color = trx.type === 'Pemasukan' ? 'text-primary-500' : 'text-danger-500';
 
                 container.innerHTML += `
-                    <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
-                        <div class="flex flex-col">
-                            <p class="text-sm" style="color: var(--light-gray);">${trx.type}</p>
-                            <h4>${trx.nama_kategori}</h4>
+                    <a href="/transaksi/detail-transaksi/${trx.transaksi_id}">
+                        <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
+                            <div class="flex flex-col">
+                                <p class="text-sm" style="color: var(--light-gray);">${trx.type}</p>
+                                <h4>${trx.nama_kategori}</h4>
+                            </div>
+                            <h4 class="${color}">${sign} ${formatRupiah(trx.nominal)}</h4>
                         </div>
-                        <h4 class="${color}">${sign} ${formatRupiah(trx.nominal)}</h4>
-                    </div>
+                    </a>
                 `;
             });
+        }
+
+        function renderPagination(pagination) {
+            const container = document.getElementById('pagination');
+            container.innerHTML = '';
+
+            if (pagination.total_page <= 1) return;
+
+            for (let i = 1; i <= pagination.total_page; i++) {
+                container.innerHTML += `
+                    <button
+                        class="btn btn-sm ${i === pagination.current_page ? 'btn-primary' : 'btn-outline'}"
+                        onclick="changePage(${i})"
+                    >
+                        ${i}
+                    </button>
+                `;
+            }
         }
 
         function loadTransaksi() {
             showLoading();
 
-            fetch(`/transaksi/data?mode=${currentMode}&value=${currentValue}`)
+            fetch(`/transaksi/data?mode=${currentMode}&value=${currentValue}&page=${currentPage}`)
                 .then(res => res.json())
                 .then(data => {
+                    console.log('pagination:', data.pagination);
                     renderSummary(data.summary);
                     renderList(data.list);
-                    renderChart(data.chart); 
+                    renderChart(data.chart);
+                    renderPagination(data.pagination);
                 })
-                .finally(hideLoading);
+                .finally(() => {
+                    hideLoading();
+                });
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            loadTransaksi();
         }
 
         document.addEventListener('DOMContentLoaded', function () {
             initChart();
             loadTransaksi();
         });
+
+        setTimeout(() => {
+            const alert = document.querySelector('.alert-success');
+            if (alert) alert.remove();
+        }, 3000);
 
     </script>
 <?= $this->endSection() ?>

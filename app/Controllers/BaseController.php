@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\DompetModel;
 use App\Models\KategoriModel;
+use App\Models\TransaksiModel;
 
 /**
  * BaseController provides a convenient place for loading components
@@ -54,11 +55,17 @@ abstract class BaseController extends Controller
             $data['dompet'] = $dompetModel
                 ->where('user_id', session()->get('user_id'))
                 ->findAll();
+
             $kategoriModel = new KategoriModel();
             $data['kategori'] = $kategoriModel->findAll();
+
+            $transaksiModel = new TransaksiModel();
+            $data['transaksi'] = $transaksiModel->findAll();
+
         } else {
             $data['dompet'] = [];
             $data['kategori'] = [];
+            $data['transaksi'] = [];
         }
 
         return $data;
