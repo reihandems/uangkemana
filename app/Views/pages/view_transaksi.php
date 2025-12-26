@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                     <p class="text-sm text-pale-gray">Total </p>
-                    <p id="totalTransaksi" class="text-3xl text-primary-500 font-black"></p>
+                    <p id="totalTransaksi" class="text-3xl font-black"></p>
                 </div>
                 <div class="col-span-12 sm:col-span-6">
                     <div class="grid grid-cols-6 gap-5">
@@ -136,17 +136,33 @@
 
         function renderSummary(summary) {
             const total        = Number(summary?.total ?? 0);
-            const pemasukan  = summary?.total_pemasukan ?? 0;
-            const pengeluaran = summary?.total_pengeluaran ?? 0;
+            const pemasukan    = Number(summary?.total_pemasukan ?? 0);
+            const pengeluaran  = Number(summary?.total_pengeluaran ?? 0);
 
-            document.getElementById('totalTransaksi').innerText =
-                formatRupiah(total);
+            const totalEl = document.getElementById('totalTransaksi');
 
+            // text
+            totalEl.innerText = formatRupiah(total);
             document.getElementById('totalPemasukan').innerText =
                 formatRupiah(pemasukan);
-
             document.getElementById('totalPengeluaran').innerText =
                 formatRupiah(pengeluaran);
+
+            // reset class dulu (PENTING biar gak numpuk)
+            totalEl.classList.remove(
+                'text-danger-500',
+                'text-primary-500',
+                'text-dark-text'
+            );
+
+            // logic warna
+            if (total < 0) {
+                totalEl.classList.add('text-red-500');
+            } else if (total === 0) {
+                totalEl.classList.add('text-dark-text');
+            } else {
+                totalEl.classList.add('text-primary-500');
+            }
         }
 
         // Tabs (Harian / Bulanan)
