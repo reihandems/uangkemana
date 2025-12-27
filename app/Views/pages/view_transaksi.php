@@ -2,7 +2,6 @@
 <?= $this->section('content') ?>
     <!-- Main Content -->
     <div class="ringkasan font-semibold p-8">
-
         <div id="transaksi-loading" class="space-y-4 hidden">
             <div class="skeleton h-6 w-1/3"></div>
             <div class="skeleton h-24 w-full"></div>

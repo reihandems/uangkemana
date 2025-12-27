@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BudgetModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -62,10 +63,14 @@ abstract class BaseController extends Controller
             $transaksiModel = new TransaksiModel();
             $data['transaksi'] = $transaksiModel->findAll();
 
+            $budgetModel = new BudgetModel();
+            $data['budgets'] = $budgetModel->findAll();
+
         } else {
             $data['dompet'] = [];
             $data['kategori'] = [];
             $data['transaksi'] = [];
+            $data['budgets'] = [];
         }
 
         return $data;

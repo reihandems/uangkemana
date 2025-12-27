@@ -33,7 +33,11 @@ $routes->get('/transaksi/edit/(:num)', 'Transaksi::edit/$1');
 $routes->post('/transaksi/update/(:num)', 'Transaksi::update/$1');
 $routes->get('/transaksi/delete/(:num)', 'Transaksi::delete/$1');
 
-$routes->get('/budget', 'Page::budget', ['filter' => 'auth']);
+$routes->get('/budget', 'Budget::index', ['filter' => 'auth']);
+$routes->post('/budget/store', 'Budget::store', ['filter' => 'auth']);
+$routes->post('/budget/update/(:num)', 'Budget::update/$1');
+$routes->get('/budget/delete/(:num)', 'Budget::delete/$1');
+
 $routes->get('/budget/detail-budget', 'Page::budgetDetail', ['filter' => 'auth']);
 $routes->get('/dompet', 'Page::dompet', ['filter' => 'auth']);
 $routes->get('/settings', 'Page::settings', ['filter' => 'auth']);
