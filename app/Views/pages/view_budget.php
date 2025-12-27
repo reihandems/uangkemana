@@ -54,7 +54,7 @@
             <p class="font-bold text-xl md:text-2xl">Edit Budget</p>
             <hr class="text-shaded-white my-5">
             <!-- Form -->
-            <form id="editBudgetForm" action="<?= base_url('/budget/store') ?>" method="post">
+            <form id="editBudgetForm" action="<?= base_url('/budget/update') ?>" method="post">
                 <?= csrf_field() ?>
                 <input type="hidden" name="budget_id" id="edit_budget_id">
                 <div class="grid grid-cols-12 gap-3">
@@ -165,7 +165,7 @@
                                         <p class="mt-2 text-2xl"><?= esc($b['nama_kategori']) ?></p>
                                         <p class="text-sm mt-3"><?= rupiah($b['total_pengeluaran']) ?> / <?= rupiah($b['limit_amount']) ?></p>
                                         <progress class="progress <?= $color ?> w-72 mt-3" value="<?= $b['progress'] ?>" max="100"></progress>
-                                        <p class="text-xs mt-2" style="color: var(--light-gray);">Progress <?= $b['progress'] ?>% - <span class="<?= $color ?>">(<?= ucfirst($b['status']) ?>)</span></p>
+                                        <p class="text-xs mt-2" style="color: var(--light-gray);"><span class="<?= $color ?>">(<?= ucfirst($b['status']) ?>)</span> Progress <?= $b['progress'] ?>%</p>
                                     </div>
                                     <div class="dropdown dropdown-end">
                                         <div tabindex="0" role="button" class="btn bg-white m-1">

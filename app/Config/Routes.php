@@ -38,6 +38,10 @@ $routes->post('/budget/store', 'Budget::store', ['filter' => 'auth']);
 $routes->post('/budget/update/(:num)', 'Budget::update/$1');
 $routes->get('/budget/delete/(:num)', 'Budget::delete/$1');
 
-$routes->get('/budget/detail-budget', 'Page::budgetDetail', ['filter' => 'auth']);
-$routes->get('/dompet', 'Page::dompet', ['filter' => 'auth']);
+$routes->get('/dompet', 'Dompet::index', ['filter' => 'auth']);
+$routes->post('/dompet/store', 'Dompet::store', ['filter' => 'auth']);
+$routes->post('/dompet/update/(:num)', 'Dompet::update/$1', ['filter' => 'auth']);
+$routes->get('/dompet/delete/(:num)', 'Dompet::delete/$1', ['filter' => 'auth']);
+
+
 $routes->get('/settings', 'Page::settings', ['filter' => 'auth']);
