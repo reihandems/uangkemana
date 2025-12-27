@@ -23,14 +23,6 @@ class Dashboard extends BaseController
             ->where('user_id', $userId)
             ->first()['saldo'] ?? 0;
 
-        // 2. Budget terbaru
-        $budgetTerbaru = $budgetModel
-            ->select('budget.*, kategori.nama_kategori')
-            ->join('kategori', 'kategori.kategori_id = budget.kategori_id', 'left')
-            ->where('budget.user_id', $userId)
-            ->orderBy('budget.created_at', 'DESC')
-            ->first();
-
         // 3. Total pemasukan
         $totalPemasukan = $transaksiModel
             ->selectSum('nominal')
@@ -60,14 +52,22 @@ class Dashboard extends BaseController
             $tanggalTerakhir = $transaksiTerbaru[0]['transaction_at'];
         }
 
+        $service = new \App\Services\BudgetService();
+        
+        $bulan = $this->request->getGet('bulan') ?? date('Y-m');
+        
         $data = $this->loadGlobalData();
+
 
         $data['menu'] = 'dashboard';
         $data['pageTitle'] = 'Dashboard';
         $data['subTitle'] = 'Selamat datang! ini adalah ringkasan keuangan anda';
 
         $data ['totalSaldo'] = $totalSaldo;
-        $data ['budgetTerbaru'] = $budgetTerbaru;
+        $data['budgets'] = $service->getBudgetWithProgress(
+            session()->get('user_id'),
+            $bulan
+        );
         $data ['totalPemasukan'] = $totalPemasukan;
         $data ['totalPengeluaran'] = $totalPengeluaran;
         $data ['transaksiTerbaru'] = $transaksiTerbaru;

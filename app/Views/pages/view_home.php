@@ -5,12 +5,14 @@
         <div class="grid grid-cols-12 gap-5">
             <!-- Saldo -->
             <div class="col-span-12 sm:col-span-8 bg-primary-500 rounded-xl text-white p-8">
-                <p class="text-sm mb-2">Saldo: IDR </p>
-                <p class=" text-3xl md:text-5xl font-black"><?= rupiah($totalSaldo) ?></p>
+                <div class="flex flex-col h-full justify-center">
+                    <p class="text-sm mb-2">Saldo: IDR </p>
+                    <p class=" text-3xl md:text-5xl font-black"><?= rupiah($totalSaldo) ?></p>
+                </div>
             </div>
             <!-- Saldo end -->
             <!-- Budget -->
-            <?php if (empty($budgetTerbaru)): ?>
+            <?php if (empty($budgets)): ?>
                 <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
                     <div class="flex items-center h-full">
                         <div role="alert" class="alert alert-warning alert-soft w-full flex justify-center">
@@ -19,12 +21,21 @@
                     </div>
                 </div>
             <?php else: ?>
-            <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
-                <p class="text-sm" style="color: var(--light-gray);"><?= $budgetTerbaru['nama_kategori'] ?></p>
-                <h2><?= $budgetTerbaru['total_amount'] ?></h2>
-                <progress class="progress text-primary-500 w-56" value="70" max="100"></progress>
-                <p class="text-xs mt-2" style="color: var(--light-gray);">70% Complete</p>
-            </div>
+                <?php foreach($budgets as $b) : ?>
+                <?php
+                    $color = match($b['status']) {
+                        'aman'   => 'text-primary-500',
+                        'hampir' => 'progress-warning',
+                        'over'   => 'progress-error',
+                    };
+                ?>
+                <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
+                    <p class="mt-2 text-2xl"><?= esc($b['nama_kategori']) ?></p>
+                    <p class="text-sm mt-3"><?= rupiah($b['total_pengeluaran']) ?> / <?= rupiah($b['limit_amount']) ?></p>
+                    <progress class="progress <?= $color ?> w-full mt-3" value="<?= $b['progress'] ?>" max="100"></progress>
+                    <p class="text-xs mt-2" style="color: var(--light-gray);">Progress <?= $b['progress'] ?>% - <span class="<?= $color ?>">(<?= ucfirst($b['status']) ?>)</span></p>
+                </div>
+                <?php endforeach; ?>
             <?php endif; ?>
             <!-- Budget end-->
             <!-- Pemasukan Pengeluaran -->
