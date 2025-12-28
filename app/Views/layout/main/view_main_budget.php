@@ -113,7 +113,37 @@
         </div>
     </dialog>
     <!-- Modal Transaksi end -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function showPageLoading() {
+            const loading = document.getElementById('page-loading');
+            const content = document.getElementById('page-content');
+
+            if (loading && content) {
+                loading.classList.remove('hidden');
+                content.classList.add('hidden');
+            }
+        }
+
+        function hidePageLoading() {
+            const loading = document.getElementById('page-loading');
+            const content = document.getElementById('page-content');
+
+            if (loading && content) {
+                loading.classList.add('hidden');
+                content.classList.remove('hidden');
+            }
+        }
+
+        // Tampilkan skeleton SEBELUM halaman dirender
+        showPageLoading();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Kasih delay dikit biar kelihatan (UX)
+            setTimeout(() => {
+                hidePageLoading();
+            }, 400);
+        });
+    </script>
     <?= $this->renderSection('scripts') ?>
 </body>
 </html>

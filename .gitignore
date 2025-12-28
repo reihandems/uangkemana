@@ -133,5 +133,7 @@ npm-debug.log
 yarn-error.log
 
 # Folder Uploads
-/public/uploads/*
+/public/uploads/
+/public/uploads/profile/
 !/public/uploads/.gitkeep
+!/public/uploads/profile/.gitkeep

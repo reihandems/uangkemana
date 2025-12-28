@@ -44,4 +44,5 @@ $routes->post('/dompet/update/(:num)', 'Dompet::update/$1', ['filter' => 'auth']
 $routes->get('/dompet/delete/(:num)', 'Dompet::delete/$1', ['filter' => 'auth']);
 
 
-$routes->get('/settings', 'Page::settings', ['filter' => 'auth']);
+$routes->get('/settings', 'Settings::index', ['filter' => 'auth']);
+$routes->post('/settings/update/(:num)', 'Settings::update/$1', ['filter' => 'auth']);

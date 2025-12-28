@@ -36,7 +36,11 @@
             <div tabindex="0" role="button" class="my-1">
                 <div class="avatar">
                     <div class="w-14 rounded-full">
-                        <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                        <?php if (empty(session()->get('user_gambar'))) : ?>
+                            <img src="https://img.daisyui.com/images/profile/demo/distracted1@192.webp" />
+                        <?php else : ?>
+                            <img src="<?= base_url('uploads/profile/'.session()->get('user_gambar')) ?>" />
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

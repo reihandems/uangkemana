@@ -2,102 +2,109 @@
 <?= $this->section('content') ?>
     <!-- Main Content -->
     <div class="ringkasan font-semibold p-8">
-        <div class="grid grid-cols-12 gap-5">
-            <!-- Saldo -->
-            <div class="col-span-12 sm:col-span-8 bg-primary-500 rounded-xl text-white p-8">
-                <div class="flex flex-col h-full justify-center">
-                    <p class="text-sm mb-2">Saldo: IDR </p>
-                    <p class=" text-3xl md:text-5xl font-black"><?= rupiah($totalSaldo) ?></p>
-                </div>
-            </div>
-            <!-- Saldo end -->
-            <!-- Budget -->
-            <?php if (empty($budgets)): ?>
-                <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
-                    <div class="flex items-center h-full">
-                        <div role="alert" class="alert alert-warning alert-soft w-full flex justify-center">
-                            <span>Belum ada budget</span>
-                        </div>
+        <div id="page-loading" class="hidden space-y-4">
+                <div class="skeleton h-6 w-1/3"></div>
+                <div class="skeleton h-24 w-full"></div>
+                <div class="skeleton h-32 w-full"></div>
+        </div>
+        <div id="page-content">
+            <div class="grid grid-cols-12 gap-5">
+                <!-- Saldo -->
+                <div class="col-span-12 sm:col-span-8 bg-primary-500 rounded-xl text-white p-8">
+                    <div class="flex flex-col h-full justify-center">
+                        <p class="text-sm mb-2">Saldo: IDR </p>
+                        <p class=" text-3xl md:text-5xl font-black"><?= rupiah($totalSaldo) ?></p>
                     </div>
                 </div>
-            <?php else: ?>
-                <?php foreach($budgets as $b) : ?>
-                <?php
-                    $color = match($b['status']) {
-                        'aman'   => 'text-primary-500',
-                        'hampir' => 'progress-warning',
-                        'over'   => 'progress-error',
-                    };
-                ?>
-                <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
-                    <p class="mt-2 text-2xl"><?= esc($b['nama_kategori']) ?></p>
-                    <p class="text-sm mt-3"><?= rupiah($b['total_pengeluaran']) ?> / <?= rupiah($b['limit_amount']) ?></p>
-                    <progress class="progress <?= $color ?> w-full mt-3" value="<?= $b['progress'] ?>" max="100"></progress>
-                    <p class="text-xs mt-2" style="color: var(--light-gray);">Progress <?= $b['progress'] ?>% - <span class="<?= $color ?>">(<?= ucfirst($b['status']) ?>)</span></p>
+                <!-- Saldo end -->
+                <!-- Budget -->
+                <?php if (empty($budgets)): ?>
+                    <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
+                        <div class="flex items-center h-full">
+                            <div role="alert" class="alert alert-warning alert-soft w-full flex justify-center">
+                                <span>Belum ada budget</span>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <?php foreach($budgets as $b) : ?>
+                    <?php
+                        $color = match($b['status']) {
+                            'aman'   => 'text-primary-500',
+                            'hampir' => 'progress-warning',
+                            'over'   => 'progress-error',
+                        };
+                    ?>
+                    <div class="col-span-12 sm:col-span-4 bg-white rounded-xl border border-shaded-white px-6 py-4">
+                        <p class="mt-2 text-2xl"><?= esc($b['nama_kategori']) ?></p>
+                        <p class="text-sm mt-3"><?= rupiah($b['total_pengeluaran']) ?> / <?= rupiah($b['limit_amount']) ?></p>
+                        <progress class="progress <?= $color ?> w-full mt-3" value="<?= $b['progress'] ?>" max="100"></progress>
+                        <p class="text-xs mt-2" style="color: var(--light-gray);">Progress <?= $b['progress'] ?>% - <span class="<?= $color ?>">(<?= ucfirst($b['status']) ?>)</span></p>
+                    </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- Budget end-->
+                <!-- Pemasukan Pengeluaran -->
+                <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
+                    <p class="text-sm mb-2" style="color: var(--light-gray);">Pemasukan</p>
+                    <div class="flex flex-row items-center">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 36.6668C17.8113 36.6668 15.644 36.2357 13.622 35.3982C11.5999 34.5606 9.76254 33.3329 8.2149 31.7853C5.08929 28.6597 3.33334 24.4204 3.33334 20.0002C3.33334 15.5799 5.08929 11.3407 8.2149 8.21505C11.3405 5.08944 15.5797 3.3335 20 3.3335C22.1887 3.3335 24.356 3.76459 26.3781 4.60217C28.4002 5.43975 30.2375 6.66741 31.7851 8.21505C33.3328 9.76269 34.5604 11.6 35.398 13.6221C36.2356 15.6442 36.6667 17.8115 36.6667 20.0002C36.6667 24.4204 34.9107 28.6597 31.7851 31.7853C28.6595 34.9109 24.4203 36.6668 20 36.6668ZM28.3333 23.3335L20 15.0002L11.6667 23.3335H28.3333Z" fill="#36A74A"/>
+                        </svg>
+                        <h1 class="ml-2" style="color: var(--dark-text);"><?= rupiah($totalPemasukan) ?></h1>
+                    </div>
                 </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            <!-- Budget end-->
-            <!-- Pemasukan Pengeluaran -->
-            <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
-                <p class="text-sm mb-2" style="color: var(--light-gray);">Pemasukan</p>
-                <div class="flex flex-row items-center">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 36.6668C17.8113 36.6668 15.644 36.2357 13.622 35.3982C11.5999 34.5606 9.76254 33.3329 8.2149 31.7853C5.08929 28.6597 3.33334 24.4204 3.33334 20.0002C3.33334 15.5799 5.08929 11.3407 8.2149 8.21505C11.3405 5.08944 15.5797 3.3335 20 3.3335C22.1887 3.3335 24.356 3.76459 26.3781 4.60217C28.4002 5.43975 30.2375 6.66741 31.7851 8.21505C33.3328 9.76269 34.5604 11.6 35.398 13.6221C36.2356 15.6442 36.6667 17.8115 36.6667 20.0002C36.6667 24.4204 34.9107 28.6597 31.7851 31.7853C28.6595 34.9109 24.4203 36.6668 20 36.6668ZM28.3333 23.3335L20 15.0002L11.6667 23.3335H28.3333Z" fill="#36A74A"/>
-                    </svg>
-                    <h1 class="ml-2" style="color: var(--dark-text);"><?= rupiah($totalPemasukan) ?></h1>
+                <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
+                    <p class="text-sm mb-2" style="color: var(--light-gray);">Pengeluaran</p>
+                    <div class="flex flex-row items-center">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 3.3335C22.1887 3.3335 24.356 3.76459 26.3781 4.60217C28.4002 5.43975 30.2375 6.66741 31.7852 8.21505C33.3328 9.76269 34.5605 11.6 35.398 13.6221C36.2356 15.6442 36.6667 17.8115 36.6667 20.0002C36.6667 24.4204 34.9108 28.6597 31.7852 31.7853C28.6595 34.9109 24.4203 36.6668 20 36.6668C17.8113 36.6668 15.6441 36.2357 13.622 35.3982C11.5999 34.5606 9.76257 33.3329 8.21493 31.7853C5.08932 28.6597 3.33337 24.4204 3.33337 20.0002C3.33337 15.5799 5.08932 11.3407 8.21493 8.21505C11.3405 5.08944 15.5798 3.3335 20 3.3335ZM11.6667 16.6668L20 25.0002L28.3334 16.6668H11.6667Z" fill="#DB1D1F"/>
+                        </svg>
+                        <h1 class="ml-2" style="color: var(--dark-text);"><?= rupiah($totalPengeluaran) ?></h1>
+                    </div>
                 </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 bg-white rounded-xl py-6 px-8 border border-shaded-white">
-                <p class="text-sm mb-2" style="color: var(--light-gray);">Pengeluaran</p>
-                <div class="flex flex-row items-center">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 3.3335C22.1887 3.3335 24.356 3.76459 26.3781 4.60217C28.4002 5.43975 30.2375 6.66741 31.7852 8.21505C33.3328 9.76269 34.5605 11.6 35.398 13.6221C36.2356 15.6442 36.6667 17.8115 36.6667 20.0002C36.6667 24.4204 34.9108 28.6597 31.7852 31.7853C28.6595 34.9109 24.4203 36.6668 20 36.6668C17.8113 36.6668 15.6441 36.2357 13.622 35.3982C11.5999 34.5606 9.76257 33.3329 8.21493 31.7853C5.08932 28.6597 3.33337 24.4204 3.33337 20.0002C3.33337 15.5799 5.08932 11.3407 8.21493 8.21505C11.3405 5.08944 15.5798 3.3335 20 3.3335ZM11.6667 16.6668L20 25.0002L28.3334 16.6668H11.6667Z" fill="#DB1D1F"/>
-                    </svg>
-                    <h1 class="ml-2" style="color: var(--dark-text);"><?= rupiah($totalPengeluaran) ?></h1>
-                </div>
-            </div>
-            <!-- Pemasukan Pengeluaran end-->
-            <!-- Transaksi-->
-            <?php if (empty($transaksiTerbaru)): ?>
-                <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
+                <!-- Pemasukan Pengeluaran end-->
+                <!-- Transaksi-->
+                <?php if (empty($transaksiTerbaru)): ?>
+                    <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
+                            <div class="flex flex-row justify-between">
+                                <h3>Transaksi Terbaru</h3>
+                                <a href="<?= base_url('/transaksi') ?>"
+                                    <p class="font-black" style="color: var(--primary-500);">Lainnya</p>
+                                </a>
+                            </div>
+                            <hr class="my-5" style="color: var(--shaded-white);">
+                            <div role="alert" class="alert alert-warning alert-soft flex justify-center">
+                                <span>Belum ada transaksi</span>
+                            </div>
+                    </div>
+                <?php else: ?>
+                    <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
                         <div class="flex flex-row justify-between">
-                            <h3>Transaksi Terbaru</h3>
+                            <h3>Transaksi Terakhir</h3>
                             <a href="<?= base_url('/transaksi') ?>"
                                 <p class="font-black" style="color: var(--primary-500);">Lainnya</p>
                             </a>
                         </div>
                         <hr class="my-5" style="color: var(--shaded-white);">
-                        <div role="alert" class="alert alert-warning alert-soft flex justify-center">
-                            <span>Belum ada transaksi</span>
+                        <h4 style="color: var(--tinted-gray)" class="mb-5 font-semibold">
+                            <?= labelTanggal($tanggalTerakhir) ?>
+                        </h4>
+                        <!-- Transaksi List -->
+                        <?php foreach ($transaksiTerbaru as $trt) : ?>
+                        <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
+                            <div class="flex flex-col">
+                                <p class="text-sm mb-1" style="color: var(--light-gray);"><?= $trt['type'] ?></p>
+                                <h3><?= $trt['nama_kategori'] ?></h3>
+                            </div>
+                            <h3><?= formatNominal($trt['nominal'], $trt['type']) ?></h3>
                         </div>
-                </div>
-            <?php else: ?>
-                <div class="col-span-12 bg-white rounded-xl py-6 px-8 border border-shaded-white">
-                    <div class="flex flex-row justify-between">
-                        <h3>Transaksi Terakhir</h3>
-                        <a href="<?= base_url('/transaksi') ?>"
-                            <p class="font-black" style="color: var(--primary-500);">Lainnya</p>
-                        </a>
+                        <?php endforeach; ?>
+                        <!-- Transaksi List -->
                     </div>
-                    <hr class="my-5" style="color: var(--shaded-white);">
-                    <h4 style="color: var(--tinted-gray)" class="mb-5 font-semibold">
-                        <?= labelTanggal($tanggalTerakhir) ?>
-                    </h4>
-                    <!-- Transaksi List -->
-                    <?php foreach ($transaksiTerbaru as $trt) : ?>
-                    <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
-                        <div class="flex flex-col">
-                            <p class="text-sm mb-1" style="color: var(--light-gray);"><?= $trt['type'] ?></p>
-                            <h3><?= $trt['nama_kategori'] ?></h3>
-                        </div>
-                        <h3><?= formatNominal($trt['nominal'], $trt['type']) ?></h3>
-                    </div>
-                    <?php endforeach; ?>
-                    <!-- Transaksi List -->
-                </div>
-            <?php endif; ?>
-            <!-- Transaksi-->
+                <?php endif; ?>
+                <!-- Transaksi-->
+            </div>
         </div>
     </div>
     <!-- Main Content end -->
