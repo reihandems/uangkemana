@@ -84,8 +84,14 @@
     </dialog>
     <div class="ringkasan font-semibold p-8">
         <div id="page-loading" class="space-y-4 hidden">
-            <div class="skeleton h-24 w-full"></div>
-            <div class="skeleton h-32 w-full"></div>
+            <div class="grid grid-cols-12 gap-5">
+                <div class="col-span-6">
+                    <div class="skeleton h-48 w-full"></div> 
+                </div>
+                <div class="col-span-6">
+                    <div class="skeleton h-48 w-full"></div> 
+                </div>
+            </div>
         </div>
         <div id="page-content">
             <div class="grid grid-cols-12 gap-5">
