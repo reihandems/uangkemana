@@ -7,6 +7,10 @@ use CodeIgniter\Router\RouteCollection;
  */
 use App\Controllers\AuthController;
 
+// LANDING PAGE
+$routes->get('/', 'Page::landingPage');
+
+
 // AUTENTIKASI - LOGIN
 $routes->get('/login', 'Page::login');
 $routes->post('/login/process', 'Auth::loginProcess');

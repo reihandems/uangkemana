@@ -4,6 +4,10 @@ namespace App\Controllers;
 use App\Controllers\Dashboard;
 
 class Page extends BaseController {
+    public function landingPage() {
+        return view('landing_page');
+    }
+
     // LOGIN
     public function login() {
         return view('auth/login');
