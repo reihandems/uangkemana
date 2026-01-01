@@ -11,7 +11,7 @@
 <body class="bg-white text-dark-text">
 
 <!-- ================= NAVBAR ================= -->
-<div class="navbar bg-white border-b border-shaded-white px-6 py-4">
+<div class="navbar bg-white border-b border-shaded-white px-6 py-3">
     <div class="flex-1">
         <div class="flex flex-row items-center">
             <img src="<?= base_url('assets/img/logo.png') ?>" alt="" class="w-12 hidden md:block">
@@ -27,7 +27,7 @@
 </div>
 
 <!-- ================= HERO ================= -->
-<section class="px-6 py-20 text-center" style="background-image: url(<?= base_url('assets/img/hero.png') ?>); background-position: center;">
+<section class="px-6 py-48 text-center" style="background-image: url(<?= base_url('assets/img/footer.png') ?>); background-position: center;">
     <div class="flex flex-col items-center px-6 md:px-48">
         <h1 class="text-4xl text-primary-900 md:text-5xl font-extrabold mb-6">
             Uang kamu pergi ke mana tiap bulan?
@@ -140,7 +140,7 @@
 </section>
 
 <!-- ================= CTA ================= -->
-<section class="py-20 px-6 text-center">
+<section class="py-20 px-6 text-center" style="background-image: url(<?= base_url('assets/img/footer.png') ?>);">
     <h2 class="text-3xl font-bold mb-4">
         Saatnya tahu ke mana uangmu pergi.
     </h2>
@@ -153,7 +153,7 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="border-t py-6 text-center text-sm text-gray-400">
+<footer class="border-t border-shaded-white py-6 text-center text-sm text-gray-400">
     © 2025 UangKemana — Catat. Pahami. Kendalikan.
 </footer>
 
