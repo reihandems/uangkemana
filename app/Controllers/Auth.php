@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use App\Models\DompetModel;
+use App\Models\AdminModel;
 
 class Auth extends BaseController {
     public function login() {
@@ -15,27 +16,44 @@ class Auth extends BaseController {
 
     public function loginProcess(){
         $session = session();
-        $model = new UserModel();
 
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        // Ambil user + role
-        $user = $model->where('email', $email)->first();
-
+        $userModel = new UserModel();
+        $user = $userModel->where('email', $email)->first();
         // Validasi login
         if ($user && password_verify($password, $user['password'])) {
-            // Set session
-            $session->set([
-                'user_id'    => $user['user_id'],
-                'user_nama'  => $user['name'],  
-                'user_email' => $user['email'],
-                'user_gambar' => $user['gambar'],
-                'logged_in'  => true
-            ]);
-            return redirect()->to('/dashboard');
+            return $this->setSession($user['user_id'], $user, $user['name'], $user['gambar'], 'user');
         }
+
+        $adminModel = new AdminModel();
+        $user = $adminModel->where('email', $email)->first();
+        if ($user && password_verify($password, $user['password'])) {
+            return $this->setSession($user['admin_id'], $user, $user['nama_admin'], $user['gambar'], 'admin');
+        }
+
         return redirect()->back()->with('error', 'Email atau password salah.')->withInput();
+    }
+
+    private function setSession($id, $userData, $nama, $gambar, $role) {
+        session()->set([
+            'logged_in' => true,
+            'user_id'    => $id,
+            'user_email' => $userData['email'],
+            'user_nama'  => $nama,
+            'user_gambar' => $gambar,
+            'role' => $role
+        ]);
+
+        if ($role === 'user') {
+            return redirect()->to('/user/dashboard');
+        } elseif ($role === 'admin') {
+            return redirect()->to('/admin/dashboard');
+        } else {
+            return redirect()->back()->with('error', 'Email atau password salah!')->withInput();
+        }
+
     }
 
 

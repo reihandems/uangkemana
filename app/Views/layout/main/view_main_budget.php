@@ -31,7 +31,7 @@
             <p class="font-bold text-xl md:text-2xl">Transaksi Baru</p>
             <hr class="text-shaded-white my-5">
             <!-- Form -->
-            <form id="transaksiForm" action="<?= base_url('/transaksi/store') ?>" method="post">
+            <form id="transaksiForm" action="<?= base_url('/user/transaksi/store') ?>" method="post">
                 <?= csrf_field() ?>
                 <div class="grid grid-cols-12 gap-3">
                     <div class="col-span-12">

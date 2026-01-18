@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UangKemana - Money Tracker</title>
-
     <!-- Tailwind + DaisyUI -->
     <link href="<?= base_url('assets/css/output.css') ?>" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body class="bg-white text-dark-text">
 
@@ -19,8 +23,8 @@
         </div>
     </div>
     <div class="flex gap-3">
-        <a class="btn btn-ghost btn-sm">Fitur</a>
-        <a class="btn btn-ghost btn-sm">Tentang</a>
+        <a href="#features" class="btn btn-ghost btn-sm transition">Fitur</a>
+        <a href="/tentang" class="btn btn-ghost btn-sm">Tentang</a>
         <a href="/login" class="btn btn-outline btn-sm">Login</a>
         <a href="/register" class="btn bg-primary-500 btn-sm text-white">Daftar Gratis</a>
     </div>
@@ -86,7 +90,7 @@
 </section>
 
 <!-- ================= FEATURES ================= -->
-<section class="py-20 px-6" style="background-image: url(<?= base_url('assets/img/features.png') ?>); background-position: center;">
+<section id="features" class="py-20 px-6" style="background-image: url(<?= base_url('assets/img/features.png') ?>); background-position: center;">
     <div class="max-w-5xl mx-auto">
         <h2 class="text-3xl font-bold text-center mb-16">
             <span class="text-primary-500">UangKemana</span> hadir buat bantu kamu

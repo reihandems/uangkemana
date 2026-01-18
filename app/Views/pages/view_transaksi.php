@@ -342,7 +342,7 @@
                 const color = trx.type === 'Pemasukan' ? 'text-primary-500' : 'text-danger-500';
 
                 container.innerHTML += `
-                    <a href="/transaksi/detail-transaksi/${trx.transaksi_id}">
+                    <a href="/user/transaksi/detail-transaksi/${trx.transaksi_id}">
                         <div class="transaksi-home flex flex-row justify-between items-center border border-dark-white p-3.5 rounded-lg mb-3">
                             <div class="flex flex-col">
                                 <p class="text-sm" style="color: var(--light-gray);">${trx.type}</p>
@@ -376,7 +376,7 @@
         function loadTransaksi() {
             showLoading();
 
-            fetch(`/transaksi/data?mode=${currentMode}&value=${currentValue}&page=${currentPage}`)
+            fetch(`/user/transaksi/data?mode=${currentMode}&value=${currentValue}&page=${currentPage}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log('pagination:', data.pagination);

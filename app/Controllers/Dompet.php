@@ -30,7 +30,7 @@ class Dompet extends BaseController {
             'saldo'       => (int) $this->request->getPost('saldo')
         ]);
 
-        return redirect()->to('/dompet')->with('success', 'Dompet berhasil ditambahkan');
+        return redirect()->to('/user/dompet')->with('success', 'Dompet berhasil ditambahkan');
     }
 
     public function update($id){
@@ -40,7 +40,7 @@ class Dompet extends BaseController {
             'nama_dompet' => $this->request->getPost('nama_dompet')
         ]);
 
-        return redirect()->to('/dompet')->with('success', 'Dompet berhasil diperbarui');
+        return redirect()->to('/user/dompet')->with('success', 'Dompet berhasil diperbarui');
     }
 
     public function delete($id){
@@ -48,8 +48,7 @@ class Dompet extends BaseController {
 
         $model->delete($id);
 
-        return redirect()->to('/dompet')->with('success', 'Dompet berhasil dihapus');
+        return redirect()->to('/user/dompet')->with('success', 'Dompet berhasil dihapus');
     }
-
 
 }

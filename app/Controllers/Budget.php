@@ -57,7 +57,7 @@ class Budget extends BaseController {
             'bulan' => $this->request->getPost('bulan')
         ]);
 
-        return redirect()->to('/budget')
+        return redirect()->to('/user/budget')
             ->with('success', 'Budget berhasil diperbarui');
     }
 
@@ -65,7 +65,7 @@ class Budget extends BaseController {
         $model = new BudgetModel();
         $model->delete($id);
 
-        return redirect()->to('/budget')
+        return redirect()->to('/user/budget')
             ->with('success', 'Budget berhasil dihapus');
     }
 

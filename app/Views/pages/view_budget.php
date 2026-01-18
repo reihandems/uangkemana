@@ -6,7 +6,7 @@
             <p class="font-bold text-xl md:text-2xl">Tambah Budget</p>
             <hr class="text-shaded-white my-5">
             <!-- Form -->
-            <form id="budgetForm" action="<?= base_url('/budget/store') ?>" method="post">
+            <form id="budgetForm" action="<?= base_url('/user/budget/store') ?>" method="post">
                 <?= csrf_field() ?>
                 <div class="grid grid-cols-12 gap-3">
                     <div class="col-span-12">
@@ -54,7 +54,7 @@
             <p class="font-bold text-xl md:text-2xl">Edit Budget</p>
             <hr class="text-shaded-white my-5">
             <!-- Form -->
-            <form id="editBudgetForm" action="<?= base_url('/budget/update') ?>" method="post">
+            <form id="editBudgetForm" action="<?= base_url('/user/budget/update') ?>" method="post">
                 <?= csrf_field() ?>
                 <input type="hidden" name="budget_id" id="edit_budget_id">
                 <div class="grid grid-cols-12 gap-3">
@@ -235,7 +235,7 @@
         document.getElementById('edit_limit_amount').value = limit;
 
         document.getElementById('editBudgetForm').action =
-            `<?= base_url('/budget/update') ?>/${id}`;
+            `<?= base_url('/user/budget/update') ?>/${id}`;
 
         modal_edit_budget.showModal();
     }
@@ -244,7 +244,7 @@
         if (!confirm('Yakin ingin menghapus budget ini?')) return;
 
         window.location.href =
-            `<?= base_url('/budget/delete') ?>/${id}`;
+            `<?= base_url('/user/budget/delete') ?>/${id}`;
     }
 
     setTimeout(() => {

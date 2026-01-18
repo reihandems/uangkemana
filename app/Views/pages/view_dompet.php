@@ -6,7 +6,7 @@
             <p class="font-bold text-xl md:text-2xl">Tambah Dompet</p>
             <hr class="text-shaded-white my-5">
             <!-- Form -->
-            <form id="dompetForm" action="<?= base_url('/dompet/store') ?>" method="post">
+            <form id="dompetForm" action="<?= base_url('/user/dompet/store') ?>" method="post">
                 <div class="grid grid-cols-12 gap-3">
                     <div class="col-span-12">
                         <fieldset class="fieldset">
@@ -46,7 +46,7 @@
             <p class="font-bold text-xl md:text-2xl">Edit Dompet</p>
             <hr class="text-shaded-white my-5">
             <!-- Form -->
-            <form id="editDompetForm" action="<?= base_url('/dompet/update') ?>" method="post">
+            <form id="editDompetForm" action="<?= base_url('/user/dompet/update') ?>" method="post">
                 <?= csrf_field() ?>
                 <div class="grid grid-cols-12 gap-3">
                     <input type="hidden" name="dompet_id" id="edit_dompet_id">
@@ -132,7 +132,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="text-danger-500" href="<?= base_url('/dompet/delete/'.$d['dompet_id']) ?>"
+                                            <a class="text-danger-500" href="<?= base_url('/user/dompet/delete/'.$d['dompet_id']) ?>"
                        onclick="return confirm('Yakin hapus dompet?')">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M19 4H15.5L14.5 3H9.5L8.5 4H5V6H19M6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19V7H6V19Z" fill="#FF3728"/>
@@ -180,7 +180,7 @@
     function openEditDompet(id, nama, saldo) {
         document.getElementById('editNamaDompet').value = nama;
         document.getElementById('editSaldo').value = saldo;
-        document.getElementById('editDompetForm').action = `/dompet/update/${id}`;
+        document.getElementById('editDompetForm').action = `/user/dompet/update/${id}`;
         modal_edit_dompet.showModal();
     }
 

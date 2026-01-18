@@ -8,6 +8,10 @@ class Page extends BaseController {
         return view('landing_page');
     }
 
+    public function landingPageTentang() {
+        return view('tentang');
+    }
+
     // LOGIN
     public function login() {
         return view('auth/login');

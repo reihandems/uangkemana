@@ -167,7 +167,7 @@ class Transaksi extends BaseController
         $transaksiLama = $transaksiModel->find($id);
 
         if (!$transaksiLama) {
-            return redirect()->to('/transaksi');
+            return redirect()->to('/user/transaksi');
         }
 
         // =========================
@@ -221,7 +221,7 @@ class Transaksi extends BaseController
             'note'           => $this->request->getPost('note'),
         ]);
 
-        return redirect()->to('/transaksi')
+        return redirect()->to('/user/transaksi')
             ->with('success', 'Transaksi berhasil diperbarui');
     }
 
@@ -233,7 +233,7 @@ class Transaksi extends BaseController
         $transaksi = $transaksiModel->find($id);
 
         if (!$transaksi) {
-            return redirect()->to('/transaksi');
+            return redirect()->to('/user/transaksi');
         }
 
         $nominal  = (int) $transaksi['nominal']; // 🔴 WAJIB CAST
@@ -256,7 +256,7 @@ class Transaksi extends BaseController
         // =========================
         $transaksiModel->delete($id);
 
-        return redirect()->to('/transaksi')
+        return redirect()->to('/user/transaksi')
             ->with('success', 'Transaksi berhasil dihapus');
     }
 
