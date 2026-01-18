@@ -102,6 +102,29 @@ h6 {
     color: var(--primary-500);
 }
 
+.sidebar-admin .list-menu {
+    padding: 16px 14px;
+    font-size: 16px;
+    border-radius: 12px;
+    color: var(--pale-gray);
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+.sidebar-admin .list-menu svg {
+    color: var(--pale-gray);
+}
+
+.sidebar-admin .list-menu.active {
+    background-color: var(--primary-100);
+    color: var(--primary-500);
+    font-weight: 900;
+}
+
+.sidebar-admin .list-menu.active svg {
+    color: var(--primary-500);
+}
+
 .page-title {
     font-weight: 700;
 }

@@ -23,6 +23,7 @@ $routes->post('/register/akun-process', 'Auth::registerBuatAkunProcess');
 $routes->get('/register/buat-dompet', 'Auth::registerBuatDompet');
 $routes->post('/register/buat-dompet/dompet-process', 'Auth::registerBuatDompetProcess');
 
+// USER
 $routes->group('user', ['filter' => 'role:user'], function($routes) {
     $routes->get('dashboard', 'Dashboard::index');
     $routes->post('dashboard/store', 'Transaksi::store');
@@ -51,4 +52,22 @@ $routes->group('user', ['filter' => 'role:user'], function($routes) {
     
     $routes->get('settings', 'Settings::index');
     $routes->post('settings/update/(:num)', 'Settings::update/$1');
+});
+
+// ADMIN
+$routes->group('admin', ['filter' => 'role:admin'], function($routes) {
+    // ADMIN - DASHBOARD
+    $routes->get('dashboard', 'Admin\Dashboard::index');
+
+    // ADMIN - DATA USER
+    $routes->get('data-user', 'Admin\DataUser::index');
+    $routes->get('data-user/delete/(:num)', 'Admin\DataUser::delete/$1');
+
+    // ADMIN - DATA KATEGORI
+    $routes->get('data-kategori', 'Admin\DataKategori::index');
+    $routes->get('data-kategori/create', 'Admin\DataKategori::create');
+    $routes->post('data-kategori/store', 'Admin\DataKategori::store');
+    $routes->get('data-kategori/edit/(:num)', 'Admin\DataKategori::edit/$1');
+    $routes->post('data-kategori/update/(:num)', 'Admin\DataKategori::update/$1');
+    $routes->get('data-kategori/delete/(:num)', 'Admin\DataKategori::delete/$1');
 });
