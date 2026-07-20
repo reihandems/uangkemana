@@ -26,7 +26,7 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'localhost',
+        'hostname'     => '',
         'username'     => '',
         'password'     => '',
         'database'     => '',
@@ -37,7 +37,7 @@ class Database extends Config
         'charset'      => 'utf8mb4',
         'DBCollat'     => 'utf8mb4_general_ci',
         'swapPre'      => '',
-        'encrypt'      => false,
+        'encrypt'      => true,
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
@@ -194,11 +194,14 @@ class Database extends Config
     {
         parent::__construct();
 
-        // Ensure that we always set the database group to 'tests' if
-        // we are currently running an automated test suite, so that
-        // we don't overwrite live data on accident.
-        if (ENVIRONMENT === 'testing') {
-            $this->defaultGroup = 'tests';
-        }
+        // ✅ Semua diambil dari env var, fallback string kosong ''
+        // JANGAN fallback ke 'localhost' karena akan menyebabkan error socket
+        $this->default['hostname'] = env('DB_HOSTNAME', '');
+        $this->default['username'] = env('DB_USERNAME', '');
+        $this->default['password'] = env('DB_PASSWORD', '');
+        $this->default['database'] = env('DB_DATABASE', '');
+
+        // ✅ Cast ke (int) wajib, MySQLi error jika port bertipe string
+        $this->default['port'] = (int) env('DB_PORT', 3306);
     }
 }
