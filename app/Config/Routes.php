@@ -71,3 +71,12 @@ $routes->group('admin', ['filter' => 'role:admin'], function($routes) {
     $routes->post('data-kategori/update/(:num)', 'Admin\DataKategori::update/$1');
     $routes->get('data-kategori/delete/(:num)', 'Admin\DataKategori::delete/$1');
 });
+
+$routes->get('/debug-env', function () {
+    echo '<pre>';
+    echo 'DB_HOSTNAME: ' . env('DB_HOSTNAME') . "\n";
+    echo 'DB_PORT: ' . env('DB_PORT') . "\n";
+    echo 'DB_DATABASE: ' . env('DB_DATABASE') . "\n";
+    print_r($_ENV);
+    echo '</pre>';
+});
