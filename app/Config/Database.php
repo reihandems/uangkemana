@@ -41,7 +41,7 @@ class Database extends Config
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
-        'port'         => 3306,
+        'port'         => 4000,
         'numberNative' => false,
         'foundRows'    => false,
         'dateFormat'   => [
@@ -200,8 +200,7 @@ class Database extends Config
         $this->default['username'] = env('DB_USERNAME', '');
         $this->default['password'] = env('DB_PASSWORD', '');
         $this->default['database'] = env('DB_DATABASE', '');
-
         // ✅ Cast ke (int) wajib, MySQLi error jika port bertipe string
-        $this->default['port'] = (int) env('DB_PORT', 3306);
+        $this->default['port'] = (int) env('DB_PORT', 4000);
     }
 }
