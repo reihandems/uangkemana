@@ -202,5 +202,10 @@ class Database extends Config
         $this->default['database'] = env('DB_DATABASE', '');
         // ✅ Cast ke (int) wajib, MySQLi error jika port bertipe string
         $this->default['port'] = (int) env('DB_PORT', 4000);
+        // ✅ Konfigurasi SSL dengan CA cert TiDB
+        $this->default['encrypt'] = [
+            'ssl_ca' => ROOTPATH . 'certs/isrgrootx1.pem',
+            'ssl_verify' => true,
+        ];
     }
 }
