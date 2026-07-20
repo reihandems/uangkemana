@@ -27,6 +27,9 @@ RUN echo "PassEnv DB_HOSTNAME DB_USERNAME DB_PASSWORD DB_DATABASE DB_PORT CI_ENV
 # Salin semua file project ke dalam container
 COPY . /var/www/html/
 
+# ✅ Set permission CA cert agar bisa dibaca
+RUN chmod 644 /var/www/html/certs/isrgrootx1.pem
+
 # Atur permission folder writable
 RUN chown -R www-data:www-data /var/www/html/writable
 RUN chmod -R 777 /var/www/html/writable
